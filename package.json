@@ -1,0 +1,31 @@
+{
+  "name": "site_sondes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "glob": "^11.0.2",
+    "lru-cache": "^11.1.0",
+    "pg": "^8.15.6",
+    "pg-hstore": "^2.3.4",
+    "rimraf": "^6.0.1",
+    "sequelize": "^6.37.7",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.10",
+    "supertest": "^7.1.0"
+  }
+}

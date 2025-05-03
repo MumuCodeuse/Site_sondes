@@ -1,0 +1,4 @@
+%syntax-version=1.0.0
+%project=site_sondes
+
+init-db 2025-04-27T16:00:32Z Muriel <m.ralu@orange.fr> # Initialisation de la base de données

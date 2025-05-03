@@ -1,0 +1,145 @@
+
+@font-face {
+  font-family: 'Antaro';
+  src: url('/css/fonts/Antaro.ttf');
+}
+
+body {
+  font-family: 'Antaro';
+  background: black;
+  color: rgb(165, 165, 158);
+}
+.p_accueil-header--h1 {
+  text-align: center;
+  font-family: 'Antaro';
+  font-size: 6.5rem;
+  text-shadow: 0.4rem 0.4rem 0.4rem rgba(236, 238, 223, 0.878);
+ }
+
+.p_accueil-header__nav {
+   text-align: center;
+ }
+
+.p_accueil-header__nav--li {
+  font-size: 1.8rem;
+  padding: 2rem 1rem ;
+  font-weight: 900;
+  color: rgb(165, 165, 158);
+  display: inline-block;
+ }
+
+.p_accueil-header__nav--li a:link {
+  color: rgb(165, 165, 158);
+}
+
+.p_accueil-header__nav--li a:visited {
+  color: rgb(165, 165, 158);
+}
+
+.p_accueil-header__nav--li a:active {
+  color: rgb(165, 165, 158);
+}
+
+.p_accueil-header__nav--li a:hover {
+  color: rgb(232, 232, 30);
+  font-size:1.9rem;
+}
+
+.p_accueil-aside__groupe--img1 {
+  width:4.5% ;
+  position:relative;
+  left:42rem;
+  top: -2rem;
+}
+
+.p_accueil-aside__groupe--img2 {
+  width:4.5% ;
+  position:relative;
+  left: 44rem;
+  top:-11rem;
+  z-index:2;
+}
+
+.p_accueil-aside__groupe--img3 {
+  width:4.5% ;
+  position:relative;
+  left:36rem;
+  top:9rem;
+  z-index:2;
+}
+
+.p_accueil-aside__sonde--img {
+  width:13% ;
+  position:relative;
+  left:28%;
+  top: 3.4rem;
+  z-index:1;
+}
+
+.p_accueil-aside__groupe--img4 {
+  width:4.5% ;
+  position:relative;
+  left:32rem;
+  top:-10rem;
+  z-index:2;
+}
+
+.p_accueil-aside__groupe--img5 {
+  width:4.5% ;
+  position:relative;
+  left:31rem;
+  top:-1rem;
+}
+
+.p_accueil-aside__groupe--img6 {
+  width:5% ;
+  position:relative;
+  left:17rem;
+  top: 8.5rem;
+  z-index:2;
+}
+
+/* Cache les images pour les écrans inférieurs à 480px */
+@media screen and (max-width: 1000px) {
+  .p_accueil-aside__groupe--img1,
+  .p_accueil-aside__groupe--img2,
+  .p_accueil-aside__groupe--img3,
+  .p_accueil-aside__sonde--img,
+  .p_accueil-aside__groupe--img4,
+  .p_accueil-aside__groupe--img5,
+  .p_accueil-aside__groupe--img6 {
+    display: none; /* Cache ces éléments */
+  }
+}
+
+
+
+
+.sections-group {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-top: 9rem;
+  justify-content : space-evenly;
+}
+
+.sections-group {
+  text-align:center;
+}
+
+
+.p_accueil__h2 {
+  font-size: 2.8rem;
+  margin-bottom: 0.8rem;
+  font-weight: bold;
+  color: rgb(69, 69, 68);
+  text-shadow: 0.1rem 0.1rem 0.1rem rgba(69, 69, 69, 0.878);
+}
+
+.p_accueil__h3-colonnes {
+  column-count: 2;
+}
+
+.p_accueil__h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.8rem;
+}
