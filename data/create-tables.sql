@@ -1,7 +1,6 @@
-
+ElementRover
 BEGIN;
 --Sondes spatiales
---Tableau excel OK
   CREATE TABLE space_probe (
     space_probe_id SERIAL PRIMARY KEY,
     name_space_probe VARCHAR(100) NOT NULL,
@@ -14,7 +13,6 @@ BEGIN;
     space_probe_image_url VARCHAR(2083)
 );
 
---tableau excel OK
 CREATE TABLE element_probe (
     element_probe_id SERIAL PRIMARY KEY,
     element_probe_name VARCHAR(200),
@@ -30,8 +28,7 @@ CREATE TABLE tl_element_probe (
     FOREIGN KEY (space_probe_id) REFERENCES space_probe(space_probe_id) ON DELETE CASCADE,
     PRIMARY KEY (space_probe_id, element_probe_id) -- clé composite
 );
-
--- tableau excel OK
+-- supprimer le "s" de tools ?
 CREATE TABLE probe_scientific_tools (
     probe_scientific_tools_id SERIAL PRIMARY KEY,
     probe_scientific_tools_name VARCHAR(200),
@@ -47,7 +44,7 @@ CREATE TABLE tl_probe_scientific_tools (
     FOREIGN KEY (space_probe_id) REFERENCES space_probe(space_probe_id) ON DELETE CASCADE,
     PRIMARY KEY (space_probe_id, probe_scientific_tools_id) -- clé composite
 );
--- tableau excel OK
+
 CREATE TABLE role_probe (
     role_probe_id SERIAL PRIMARY KEY,
     role_probe_name VARCHAR(200),
@@ -63,7 +60,6 @@ CREATE TABLE tl_role_probe (
     PRIMARY KEY (space_probe_id, role_probe_id) -- clé composite
 );
 
--- tableau excel OK
 CREATE TABLE type_probe (
     type_probe_id SERIAL PRIMARY KEY,
     type_probe_name VARCHAR(200),
@@ -80,9 +76,9 @@ CREATE TABLE tl_type_probe (
 );
 
 -- rover
---tableau excel OK
 CREATE TABLE rover (
     rover_id SERIAL PRIMARY KEY,
+    -- space_probe_id
     name_rover VARCHAR(200),
     objective_rover TEXT,
     year_exploration_rover SMALLINT,
@@ -100,7 +96,6 @@ CREATE TABLE tl_sonde_rover (
     PRIMARY KEY (space_probe_id, rover_id) -- clé composites
 );
 
---tableau excel OK
 CREATE TABLE element_rover (
     element_rover_id SERIAL PRIMARY KEY,
     element_rover_name VARCHAR(200),
@@ -117,7 +112,6 @@ CREATE TABLE tl_element_rover (
     PRIMARY KEY (rover_id, element_rover_id) -- clé composite
 );
 
--- tableau excel OK
 CREATE TABLE rover_scientific_tools (
     rover_scientific_tools_id SERIAL PRIMARY KEY,
     rover_scientific_tools_name VARCHAR(200),
@@ -134,7 +128,6 @@ CREATE TABLE tl_rover_scientific_tools (
     PRIMARY KEY (rover_id, rover_scientific_tools_id) -- clé composite
 );
 
--- tableau excel OK
 CREATE TABLE role_rover (
     role_rover_id SERIAL PRIMARY KEY,
     role_rover_name VARCHAR(200),
@@ -150,7 +143,6 @@ CREATE TABLE tl_role_rover (
     PRIMARY KEY (rover_id, role_rover_id) -- clé composite
 );
 
--- tableau excel OK
 CREATE TABLE type_rover (
     type_rover_id SERIAL PRIMARY KEY,
     type_rover_name VARCHAR(200),
@@ -167,7 +159,6 @@ CREATE TABLE tl_type_rover (
 );
 
 -- Missions
---tableau excel OK
 CREATE TABLE mission (
     mission_id SERIAL PRIMARY KEY,
     mission_name VARCHAR(200),
@@ -185,7 +176,6 @@ CREATE TABLE tl_probe_mission (
     PRIMARY KEY (space_probe_id, mission_id) -- clé composite
 );
 
---Tableau excel ok
 CREATE TABLE event_mission (
     event_mission_id SERIAL PRIMARY KEY,
     event_name VARCHAR(200),
@@ -201,7 +191,6 @@ CREATE TABLE tl_event_mission (
     PRIMARY KEY (event_mission_id, mission_id) -- clé composite
 );
 
---Tableau excel ok
 CREATE TABLE scientific_discovery (
     scientific_discovery_id SERIAL PRIMARY KEY,
     mission_id INT NOT NULL,
@@ -213,7 +202,6 @@ CREATE TABLE scientific_discovery (
     discovery_image_url VARCHAR(2083)
     );
 
---Tableau excel ok
 CREATE TABLE agency_enterprise (
     agency_id SERIAL PRIMARY KEY,
     agency_name VARCHAR(200),
@@ -229,7 +217,6 @@ CREATE TABLE tl_agency_enterprise_mission (
     PRIMARY KEY (space_probe_id, agency_id) -- clé composite
 );
 
---Tableau excel ok
 CREATE TABLE country (
     country_id SERIAL PRIMARY KEY,
     country_name VARCHAR(200)
@@ -243,7 +230,6 @@ CREATE TABLE tl_ag_enterp_country (
     PRIMARY KEY (agency_id, country_id) -- clé composite
 );
 
---Tableau excel ok
 CREATE TABLE tested_technology (
     tested_tech_id SERIAL PRIMARY KEY,
     tested_tech_name VARCHAR(200),
@@ -260,7 +246,6 @@ CREATE TABLE tl_tested_tech_mission (
     PRIMARY KEY (mission_id, tested_tech_id) -- clé composite
 );
 
---Tableau excel ok
 CREATE TABLE publication (
     publication_id SERIAL PRIMARY KEY,
     mission_id INT NOT NULL,
@@ -270,7 +255,6 @@ CREATE TABLE publication (
     journal_publication TEXT
 );
 
---Tableau excel ok
 CREATE TABLE celestial_object (
     cel_obj_id SERIAL PRIMARY KEY,
     cel_obj_name VARCHAR(200),
@@ -287,7 +271,6 @@ CREATE TABLE tl_cel_obj_mission (
     PRIMARY KEY (mission_id, cel_obj_id) -- clé composite
 );
 
---Tableau excel ok
 CREATE TABLE celestial_element (
     cel_elemt_id SERIAL PRIMARY KEY,
     cel_elemt_name VARCHAR(200),
