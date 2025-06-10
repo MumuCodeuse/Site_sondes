@@ -2,3 +2,4 @@
 %project=site_sondes
 
 init-db 2025-04-27T16:00:32Z Muriel <m.ralu@orange.fr> # Initialisation de la base de données
+create-tables 2025-06-09T18:10:42Z Muriel <m.ralu@orange.fr> # Update sql tables 09062025

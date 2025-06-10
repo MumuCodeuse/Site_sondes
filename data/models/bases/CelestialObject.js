@@ -1,28 +1,31 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../../sequelize.js";
 
-class TypeProbe extends Model {}
-RoleProbe.init(
+class CelestialObject extends Model {}
+CelestialObject.init(
     {
-        type_probe_id: {
+        cel_obj_id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
         },
-        type_probe_name: {
+        cel_obj_name: {
             type: DataTypes.STRING,
         },
-        type_probe_accuracy: {
+        cel_obj_accuracy: {
             type: DataTypes.TEXT,
         },
-        type_probe_image_url: {
+        cel_obj_comment: {
+            type: DataTypes.TEXT,
+        },
+        cel_obj_image_url: {
             type: DataTypes.STRING,
         },
     },
     {
         sequelize, 
-        modelName: "TypeProbe", 
+        modelName: "CelestialObject", 
         freezeTableName: true, 
     }
 );
-export default TypeProbe;
+export default CelestialObject;

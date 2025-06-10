@@ -16,17 +16,17 @@ dotenv.config();
 // Ce pool permet de réutiliser des connexions au lieu d'en ouvrir une nouvelle à chaque requête, optimisant ainsi les performances.
 let pool;
 try {
-  pool = new Pool({
-    host: process.env.DB_HOST,      // Adresse du serveur PostgreSQL (ex: localhost en développement)
-    port: process.env.DB_PORT,      // Port utilisé par PostgreSQL (par défaut, c'est 5432)
-    user: process.env.DB_USER,      // Nom d'utilisateur défini dans le fichier .env
-    password: process.env.DB_PASSWORD,  // Mot de passe de l'utilisateur PostgreSQL (défini dans .env)
-    database: process.env.DB_NAME   // Nom de la base de données à laquelle se connecter
-  });
-  console.log("✅ Connexion réussie à PostgreSQL");
+    pool = new Pool({
+        host: process.env.DB_HOST,      // Adresse du serveur PostgreSQL (ex: localhost en développement)
+        port: process.env.DB_PORT,      // Port utilisé par PostgreSQL (par défaut, c'est 5432)
+        user: process.env.DB_USER,      // Nom d'utilisateur défini dans le fichier .env
+        password: process.env.DB_PASSWORD,  // Mot de passe de l'utilisateur PostgreSQL (défini dans .env)
+        database: process.env.DB_NAME   // Nom de la base de données à laquelle se connecter
+    });
+    console.log("✅ Connexion réussie à PostgreSQL");
 
 } catch (error) {
-  console.error("❌ Erreur de connexion à PostgreSQL :", error.message);
+    console.error("❌ Erreur de connexion à PostgreSQL :", error.message);
 }
 
 export default pool;

@@ -16,22 +16,22 @@ Rover.init(
                 key: 'space_probe_id'
             }
         },
-        name_rover: {
+        rover_name: {
             type: DataTypes.STRING,
         },
-        objective_rover: {
+        rover_objective: {
             type: DataTypes.TEXT,
         },
-        year_exploration_rover: {
+        rover_year_exploration: {
             type: DataTypes.INTEGER,
         },
-        comment_rover: {
+        rover_comment: {
             type: DataTypes.TEXT,
         },
-        Means_propulsion_energy_rover: {
+        rover_means_propulsion_energy: {
             type: DataTypes.TEXT,
         },
-        operating_state_rover: {
+        rover_operating_state: {
             type: DataTypes.TEXT,
         },
         rover_image_url: {

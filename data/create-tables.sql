@@ -3,13 +3,13 @@ BEGIN;
 --Sondes spatiales
   CREATE TABLE space_probe (
     space_probe_id SERIAL PRIMARY KEY,
-    name_space_probe VARCHAR(100) NOT NULL,
-    year_launch_space_probe SMALLINT,
-    launcher_space_probe VARCHAR(100),
-    objective_space_probe TEXT,
-    comment_space_probe TEXT,
-    operating_state_space_probe VARCHAR(100),
-    Means_propulsion_energy_probe TEXT,
+    space_probe_name VARCHAR(100) NOT NULL,
+    space_probe_year_launch SMALLINT,
+    space_probe_launcher VARCHAR(100),
+    space_probe_objective TEXT,
+    space_probe_comment TEXT,
+    space_probe_operating_state VARCHAR(100),
+    space_probe_means_propulsion_energy TEXT,
     space_probe_image_url VARCHAR(2083)
 );
 
@@ -28,21 +28,21 @@ CREATE TABLE tl_element_probe (
     FOREIGN KEY (space_probe_id) REFERENCES space_probe(space_probe_id) ON DELETE CASCADE,
     PRIMARY KEY (space_probe_id, element_probe_id) -- clé composite
 );
--- supprimer le "s" de tools ?
-CREATE TABLE probe_scientific_tools (
-    probe_scientific_tools_id SERIAL PRIMARY KEY,
-    probe_scientific_tools_name VARCHAR(200),
-    probe_scientific_tools_characteristic TEXT,
-    probe_scientific_tools_comment TEXT,
-    probe_scientific_tools_image_url VARCHAR(2083)
+
+CREATE TABLE probe_scientific_tool (
+    probe_scientific_tool_id SERIAL PRIMARY KEY,
+    probe_scientific_tool_name VARCHAR(200),
+    probe_scientific_tool_characteristic TEXT,
+    probe_scientific_tool_comment TEXT,
+    probe_scientific_tool_image_url VARCHAR(2083)
 );
 
-CREATE TABLE tl_probe_scientific_tools (
-    probe_scientific_tools_id INT NOT NULL,
+CREATE TABLE tl_probe_scientific_tool (
+    probe_scientific_tool_id INT NOT NULL,
     space_probe_id INT NOT NULL,
-    FOREIGN KEY (probe_scientific_tools_id) REFERENCES probe_scientific_tools(probe_scientific_tools_id) ON DELETE CASCADE,
+    FOREIGN KEY (probe_scientific_tool_id) REFERENCES probe_scientific_tool(probe_scientific_tool_id) ON DELETE CASCADE,
     FOREIGN KEY (space_probe_id) REFERENCES space_probe(space_probe_id) ON DELETE CASCADE,
-    PRIMARY KEY (space_probe_id, probe_scientific_tools_id) -- clé composite
+    PRIMARY KEY (space_probe_id, probe_scientific_tool_id) -- clé composite
 );
 
 CREATE TABLE role_probe (
@@ -78,22 +78,15 @@ CREATE TABLE tl_type_probe (
 -- rover
 CREATE TABLE rover (
     rover_id SERIAL PRIMARY KEY,
-    -- space_probe_id
-    name_rover VARCHAR(200),
-    objective_rover TEXT,
-    year_exploration_rover SMALLINT,
-    comment_rover TEXT,
-    Means_propulsion_energy_rover TEXT,
-    operating_state_rover TEXT,
-    rover_image_url VARCHAR(2083)
-);
-
-CREATE TABLE tl_sonde_rover (
-    rover_id INT NOT NULL,
-    space_probe_id INT NOT NULL,
-    FOREIGN KEY (rover_id) REFERENCES rover(rover_id) ON DELETE CASCADE,
-    FOREIGN KEY (space_probe_id) REFERENCES space_probe(space_probe_id) ON DELETE CASCADE,
-    PRIMARY KEY (space_probe_id, rover_id) -- clé composites
+    space_probe_id INT,
+    rover_name VARCHAR(200),
+    rover_objective TEXT,
+    rover_year_exploration SMALLINT,
+    rover_comment TEXT,
+    rover_means_propulsion_energy TEXT,
+    rover_operating_state TEXT,
+    rover_image_url VARCHAR(2083),
+    FOREIGN KEY(space_probe_id) REFERENCES space_probe(space_probe_id) ON DELETE CASCADE
 );
 
 CREATE TABLE element_rover (
@@ -112,18 +105,18 @@ CREATE TABLE tl_element_rover (
     PRIMARY KEY (rover_id, element_rover_id) -- clé composite
 );
 
-CREATE TABLE rover_scientific_tools (
-    rover_scientific_tools_id SERIAL PRIMARY KEY,
-    rover_scientific_tools_name VARCHAR(200),
-    rover_scientific_tools_characteristic TEXT,
-    rover_scientific_tools_comment TEXT,
-    rover_scientific_tools_image_url VARCHAR(2083)
+CREATE TABLE rover_scientific_tool (
+    rover_scientific_tool_id SERIAL PRIMARY KEY,
+    rover_scientific_tool_name VARCHAR(200),
+    rover_scientific_tool_characteristic TEXT,
+    rover_scientific_tool_comment TEXT,
+    rover_scientific_tool_image_url VARCHAR(2083)
 );
 
-CREATE TABLE tl_rover_scientific_tools (
-    rover_scientific_tools_id INT NOT NULL,
+CREATE TABLE tl_rover_scientific_tool (
+    rover_scientific_tool_id INT NOT NULL,
     rover_id INT NOT NULL,
-    FOREIGN KEY (rover_scientific_tools_id) REFERENCES rover_scientific_tools(rover_scientific_tools_id) ON DELETE CASCADE,
+    FOREIGN KEY (rover_scientific_tool_id) REFERENCES rover_scientific_tool(rover_scientific_tool_id) ON DELETE CASCADE,
     FOREIGN KEY (rover_id) REFERENCES rover(rover_id) ON DELETE CASCADE,
     PRIMARY KEY (rover_id, rover_scientific_tools_id) -- clé composite
 );
@@ -195,11 +188,12 @@ CREATE TABLE scientific_discovery (
     scientific_discovery_id SERIAL PRIMARY KEY,
     mission_id INT NOT NULL,
     discovery_year SMALLINT,
-    expected_discovery TEXT,
+    discovery_expected TEXT,
     discovery_category TEXT,
     discovery_result TEXT,
-    evolution_following_discovery TEXT,
-    discovery_image_url VARCHAR(2083)
+    discovery_evolution_following TEXT,
+    discovery_image_url VARCHAR(2083),
+    FOREIGN KEY (mission_id) REFERENCES mission(mission_id) ON DELETE CASCADE
     );
 
 CREATE TABLE agency_enterprise (
@@ -251,8 +245,9 @@ CREATE TABLE publication (
     mission_id INT NOT NULL,
     publication_subject TEXT,
     publication_date DATE,
-    authors_name VARCHAR(200),
-    journal_publication TEXT
+    publication_authors_name VARCHAR(200),
+    publication_journal TEXT,
+    FOREIGN KEY (mission_id) REFERENCES mission(mission_id) ON DELETE CASCADE
 );
 
 CREATE TABLE celestial_object (
@@ -260,7 +255,7 @@ CREATE TABLE celestial_object (
     cel_obj_name VARCHAR(200),
     cel_obj_accuracy TEXT,
     cel_obj_comment TEXT,
-    object_image_url VARCHAR(2083)
+    cel_obj_image_url VARCHAR(2083)
 );
 
 CREATE TABLE tl_cel_obj_mission (

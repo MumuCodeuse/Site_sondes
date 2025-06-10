@@ -1,5 +1,5 @@
 // 📌 Importation des modules nécessaires en ES Module
-//Importation des composants de Sequelize → Tu récupères les classes essentielles pour définir un modèle :
+//Importation des composants de Sequelize → récupération des classes essentielles pour définir un modèle :
 //Sequelize → Permet d'interagir avec la base SQL.
 //DataTypes → Définit le type de chaque colonne (STRING, INTEGER, etc.).
 //Model → Permet de créer des modèles Sequelize.
@@ -20,26 +20,26 @@ SpaceProbe.init(
             primaryKey: true, // Définit la clé primaire
             autoIncrement: true, // Correspond au SERIAL dans PostgreSQL
         },
-        name_space_probe: {
+        space_probe_name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        year_launch_space_probe: {
+        space_probe_year_launch: {
             type: DataTypes.INTEGER,
         },
-        launcher_space_probe: {
+        space_probe_launcher: {
             type: DataTypes.STRING,
         },
-        objective_space_probe: {
+        space_probe_objective: {
             type: DataTypes.TEXT,
         },
-        comment_space_probe: {
+        space_probe_comment: {
             type: DataTypes.TEXT,
         },
-        operating_state_space_probe: {
+        space_probe_operating_state: {
             type: DataTypes.STRING,
         },
-        Means_propulsion_energy_probe: {
+        space_probe_means_propulsion_energy: {
             type: DataTypes.TEXT,
         },
         space_probe_image_url: {
@@ -54,6 +54,6 @@ SpaceProbe.init(
     }
 );
 
-export default {SpaceProbe};
+export default SpaceProbe;
 
 console.log(SpaceProbe === sequelize.models.SpaceProbe);// Doit afficher "true"

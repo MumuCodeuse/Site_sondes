@@ -1,34 +1,29 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../../sequelize.js";
 
-class Mission extends Model {}
-Mission.init(
+class AgencyEnterprise extends Model {}
+AgencyEnterprise.init(
     {
-        mission_id: {
+        agency_id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
         },
-        mission_name: {
+        agency_name: {
             type: DataTypes.STRING,
         },
-        start_year: {
-            type: DataTypes.INTEGER,
-        },
-        end_year: {
-            type: DataTypes.INTEGER,
-        },
-        objective: {
+        agency_description: {
             type: DataTypes.TEXT,
         },
-        mission_image_url: {
+        agency_image_url: {
             type: DataTypes.STRING,
         },
     },
     {
         sequelize, 
-        modelName: "Mission", 
+        modelName: "AgencyEnterprise", 
         freezeTableName: true, 
     }
 );
-export default Mission;
+
+export default AgencyEnterprise;

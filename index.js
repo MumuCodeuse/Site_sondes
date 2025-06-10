@@ -1,22 +1,45 @@
 import dotenv from "dotenv";
-dotenv.config(); // Cette ligne permet de récupérer automatiquement les valeurs de connexion stockées dans .env.
-console.log(process.env.DB_HOST); // Doit afficher la valeur définie dans ton fichier .env
+dotenv.config(); // récupère automatiquement les valeurs de connexion stockées dans .env.
+console.log(process.env.DB_HOST); // Affiche la valeur définie dans  .env
 
 import express from "express";
 // Importe le module Express, qui permet de créer facilement des serveurs web en Node.js.
 
 import sequelize from "./data/sequelize.js"; // Connexion avec Sequelize
+import { connectDB } from "./data/sequelize.js";
 
-import SpaceProbe from "./data/models/base/SpaceProbe.js";
+import models from "./data/index.js"; // Importation des modèles de données
 
-const app = express();
-// Crée une nouvelle instance d'application Express pour gérer les requêtes HTTP.
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 
-app.use(express.json());
-// Middleware qui permet à l'application de comprendre les données JSON dans le corps des requêtes HTTP.
-// Utile pour traiter des requêtes POST ou PUT avec des données envoyées au serveur.
+const __dirname = dirname(fileURLToPath(import.meta.url));
+console.log(`📂 Répertoire du projet : ${__dirname}`);
 
-app.listen(3000, () => {
-  console.log("Serveur démarré sur le port 3000");
-});
-// Démarre le serveur et écoute sur le port 3000.
+const app = express();// Nouvelle instance d'application Express 
+app.use(express.json());// Middleware qui permet à l'application de comprendre les données JSON dans le corps des requêtes HTTP.
+
+// 📌 Fonction principale pour démarrer le serveur
+async function startServer() {
+    try {
+        await connectDB(); // Vérifie la connexion à la base de données
+        console.log("✅ Base de données connectée avec succès !");
+
+        app.listen(3000, () => {
+            console.log("🚀 Serveur démarré sur le port 3000");
+        });
+
+    } catch (error) {
+        console.error("❌ Erreur lors du démarrage du serveur :", error);
+    }
+};
+
+startServer();
+
+
+
+
+
+
+
+

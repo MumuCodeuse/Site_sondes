@@ -46,56 +46,56 @@ body {
 }
 
 .p_accueil-aside__groupe--img1 {
-  width:4.5% ;
+  width:3.5% ;
   position:relative;
-  left:42rem;
+  left: 40%;
   top: -2rem;
 }
 
 .p_accueil-aside__groupe--img2 {
-  width:4.5% ;
+  width:3% ;
   position:relative;
-  left: 44rem;
+  left: 43%;
   top:-11rem;
   z-index:2;
 }
 
 .p_accueil-aside__groupe--img3 {
-  width:4.5% ;
+  width:3% ;
   position:relative;
-  left:36rem;
+  left:36%;
   top:9rem;
   z-index:2;
 }
 
 .p_accueil-aside__sonde--img {
-  width:13% ;
+  width:10% ;
   position:relative;
-  left:28%;
-  top: 3.4rem;
+  left:35%;
+  top: 4.4rem;
   z-index:1;
 }
 
 .p_accueil-aside__groupe--img4 {
-  width:4.5% ;
+  width:3% ;
   position:relative;
-  left:32rem;
-  top:-10rem;
+  left:35%;
+  top:-8rem;
   z-index:2;
 }
 
 .p_accueil-aside__groupe--img5 {
-  width:4.5% ;
+  width:3% ;
   position:relative;
-  left:31rem;
-  top:-1rem;
+  left:33.5%;
+  top:1rem;
 }
 
 .p_accueil-aside__groupe--img6 {
-  width:5% ;
+  width:3.5% ;
   position:relative;
-  left:17rem;
-  top: 8.5rem;
+  left:25%;
+  top: 8rem;
   z-index:2;
 }
 
