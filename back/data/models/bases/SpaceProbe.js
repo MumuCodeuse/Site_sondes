@@ -50,10 +50,13 @@ SpaceProbe.init(
     // options
         sequelize, // Connexion à la base PostgreSQL
         modelName: "SpaceProbe", // Nom du modèle (Bonne pratique : PascalCase)
+        tableName: "space_probe", // Nom de la table dans la base de données
         freezeTableName: true, // Empêche Sequelize de mettre le nom de table au pluriel
+        timestamps: false, // Désactive `createdAt` et `updatedAt`
     }
 );
 
 export default SpaceProbe;
 
 console.log(SpaceProbe === sequelize.models.SpaceProbe);// Doit afficher "true"
+console.log("✅ Données récupérées :", SpaceProbe);

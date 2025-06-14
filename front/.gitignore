@@ -1,0 +1,28 @@
+# Dépendances Node.js
+node_modules/
+
+# ⚙️ Fichiers de configuration sensibles
+.env
+.env.local
+.env.development
+.env.production
+
+# Dossier de build (généré lors du déploiement)
+dist/
+build/
+.vite/
+
+# 📦 Cache et logs
+.cache/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store   # (macOS)
+Thumbs.db   # (Windows)
+
+# 🧪 Tests
+coverage/
+jest-cache/
+cypress/videos/
+cypress/screenshots/
+

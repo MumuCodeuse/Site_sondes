@@ -1,29 +1,33 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../../sequelize.js";
 
-class AgencyEnterprise extends Model {}
-AgencyEnterprise.init(
+class CelestialObject extends Model {}
+CelestialObject.init(
     {
-        agency_id: {
+        cel_obj_id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
         },
-        agency_name: {
+        cel_obj_name: {
             type: DataTypes.STRING,
         },
-        agency_description: {
+        cel_obj_accuracy: {
             type: DataTypes.TEXT,
         },
-        agency_image_url: {
+        cel_obj_comment: {
+            type: DataTypes.TEXT,
+        },
+        cel_obj_image_url: {
             type: DataTypes.STRING,
         },
     },
     {
         sequelize, 
-        modelName: "AgencyEnterprise", 
+        modelName: "CelestialObject", 
+        tableName: "celestial_object",
         freezeTableName: true, 
+        timestamps: false,
     }
 );
-
-export default AgencyEnterprise;
+export default CelestialObject;

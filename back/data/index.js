@@ -19,8 +19,7 @@ import Publication from "./models/bases/Publication.js";
 import CelestialObject from "./models/bases/CelestialObject.js";
 import CelestialElement from "./models/bases/CelestialElement.js";
 
-
-const models = {
+const modelsBase = {
     SpaceProbe,
     ElementProbe,
     ProbeScientificTools,
@@ -42,13 +41,14 @@ const models = {
     CelestialElement,
 };
 
-// Importation des associations de modèles
-import associateSpaceProbeModels from './models/associations/associations_SpaceProbe.js';
+import associateProbeModels from './models/associations/associations_SpaceProbe.js';
 import associateRoverModels from './models/associations/associations_Rover.js';
 import associateMissionModels from './models/associations/associations_Mission.js'; 
 
-associateMissionModels();
-associateRoverModels();
-associateSpaceProbeModels();
+const modelsAssociation = {
+    associateProbeModels,
+    associateRoverModels,
+    associateMissionModels
+};
 
-export default models;
+export { modelsBase, modelsAssociation };

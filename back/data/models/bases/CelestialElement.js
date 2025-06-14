@@ -1,31 +1,33 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../../sequelize.js";
 
-class CelestialObject extends Model {}
-CelestialObject.init(
+class CelestialElement extends Model {}
+CelestialElement.init(
     {
-        cel_obj_id: {
+        cel_elemt_id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
         },
-        cel_obj_name: {
+        cel_elemt_name: {
             type: DataTypes.STRING,
         },
-        cel_obj_accuracy: {
+        cel_elemt_accuracy: {
             type: DataTypes.TEXT,
         },
-        cel_obj_comment: {
+        cel_elemt_comment: {
             type: DataTypes.TEXT,
         },
-        cel_obj_image_url: {
+        cel_elemt_image_url: {
             type: DataTypes.STRING,
         },
     },
     {
         sequelize, 
-        modelName: "CelestialObject", 
+        modelName: "CelestialElement",
+        tableName: "celestial_element",
         freezeTableName: true, 
+        timestamps: false,
     }
 );
-export default CelestialObject;
+export default CelestialElement;
