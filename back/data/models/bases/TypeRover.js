@@ -22,7 +22,9 @@ TypeRover.init(
     {
         sequelize, 
         modelName: "TypeRover", 
+        tableName: "type_rover",
         freezeTableName: true, 
+        timestamps: false,
     }
 );
 export default TypeRover;

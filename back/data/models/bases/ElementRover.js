@@ -31,7 +31,9 @@ ElementRover.init(
     {
         sequelize, 
         modelName: "ElementRover", 
+        tableName: "element_rover",
         freezeTableName: true, 
+        timestamps: false,
     }
 );
 

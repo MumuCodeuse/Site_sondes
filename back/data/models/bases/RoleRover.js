@@ -22,7 +22,9 @@ RoleRover.init(
     {
         sequelize, 
         modelName: "RoleRover", 
+        tableName: "role_rover",
         freezeTableName: true, 
+        timestamps: false,
     }
 );
 export default RoleRover;

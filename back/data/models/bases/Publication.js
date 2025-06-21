@@ -31,8 +31,10 @@ Publication.init(
     },
     {
         sequelize, 
-        modelName: "Publication", 
+        modelName: "Publication",
+        tableName: "publication",
         freezeTableName: true, 
+        timestamps: false,
     }
 );
 export default Publication;

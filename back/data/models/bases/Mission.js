@@ -28,7 +28,9 @@ Mission.init(
     {
         sequelize, 
         modelName: "Mission", 
+        tableName: "mission",
         freezeTableName: true, 
+        timestamps: false,
     }
 );
 export default Mission;

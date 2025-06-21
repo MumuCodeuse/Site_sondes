@@ -58,5 +58,5 @@ SpaceProbe.init(
 
 export default SpaceProbe;
 
-console.log(SpaceProbe === sequelize.models.SpaceProbe);// Doit afficher "true"
-console.log("✅ Données récupérées :", SpaceProbe);
+// console.log(SpaceProbe === sequelize.models.SpaceProbe);// Doit afficher "true"
+// console.log("✅ Données récupérées :", SpaceProbe);

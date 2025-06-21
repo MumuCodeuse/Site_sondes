@@ -26,8 +26,10 @@ ProbeScientificTools.init(
     },
     {
         sequelize, 
-        modelName: "ProbeScientificTools", 
+        modelName: "ProbeScientificTools",
+        tableName: "probe_scientific_tools",
         freezeTableName: true, 
+        timestamps: false,
     }
 );
 export default ProbeScientificTools;

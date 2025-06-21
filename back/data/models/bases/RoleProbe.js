@@ -22,7 +22,9 @@ RoleProbe.init(
     {
         sequelize, 
         modelName: "RoleProbe", 
+        tableName: "role_probe",
         freezeTableName: true, 
+        timestamps: false,
     }
 );
 export default RoleProbe;

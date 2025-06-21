@@ -22,7 +22,9 @@ TypeProbe.init(
     {
         sequelize, 
         modelName: "TypeProbe", 
+        tableName: "type_probe",
         freezeTableName: true, 
+        timestamps: false,
     }
 );
 export default TypeProbe;

@@ -38,7 +38,9 @@ ScientificDiscovery.init(
     {
         sequelize, 
         modelName: "ScientificDiscovery", 
+        tableName: "scientific_discovery",
         freezeTableName: true, 
+        timestamps: false,
     }
 );
 export default ScientificDiscovery;

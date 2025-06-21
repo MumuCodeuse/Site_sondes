@@ -4,7 +4,7 @@ import app from "./index.js";
 import sequelize from "./data/sequelize.js"; 
 
 test("GET /space_probes - Vérifie les sondes", async () => {
-  const response = await request(app).get("/space_probes");
+  const response = await request(app).get("/api/space_probes");
 
   expect(response.status).toBe(200); // Vérifie que l'API répond bien
   expect(Array.isArray(response.body)).toBe(true); // Vérifie que la réponse est un tableau

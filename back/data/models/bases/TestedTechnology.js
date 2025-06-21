@@ -25,7 +25,9 @@ TestedTechnology.init(
     {
         sequelize, 
         modelName: "TestedTechnology", 
+        tableName: "tested_technology",
         freezeTableName: true, 
+        timestamps: false,
     }
 );
 export default TestedTechnology;

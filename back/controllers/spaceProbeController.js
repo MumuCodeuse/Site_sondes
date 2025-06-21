@@ -1,19 +1,20 @@
-import SpaceProbe from "../data/models/bases/SpaceProbe";
+import SpaceProbe from "../data/models/bases/SpaceProbe.js";
 // import { modelsBase, modelsAssociation } from "./data/index.js"
 
-const getAllSpaceProbe = async (req, res) => {
-  try {
-    console.log("🔍 Requête reçue pour GET /space_probes"); // Vérifie si la requête arrive bien
-    const spaceProbe = await SpaceProbe.findAll();
-    console.log("✅ Sondes récupérées :", spaceProbe);
-   
+const getAllSpaceProbes = async (req, res) => {
+  const spaceProbe = await SpaceProbe.findAll();
     res.json(spaceProbe);
-  } catch (error) {
-    console.error("❌ Erreur serveur :", error);
-    res.status(500).json({ message: "Erreur serveur", error });
-    
-
-  }
 };
 
-export default getAllSpaceProbe;
+const getSpaceProbeById = async (req, res) => {
+  const spaceProbeId = req.params.id;
+    const spaceProbe = await SpaceProbe.findByPk(spaceProbeId);
+
+    if (!spaceProbe) {
+      return res.status(404).json({ message: "Sonde non trouvée" });
+    }
+
+    res.json(spaceProbe);
+};
+
+export default { getAllSpaceProbes, getSpaceProbeById };

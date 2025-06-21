@@ -16,7 +16,9 @@ Country.init(
     {
         sequelize, 
         modelName: "Country", 
+        tableName: "country", 
         freezeTableName: true, 
+        timestamps: false,
     }
 );
 export default Country;

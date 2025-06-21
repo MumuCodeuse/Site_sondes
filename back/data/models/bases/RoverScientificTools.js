@@ -27,7 +27,9 @@ RoverScientificTools.init(
     {
         sequelize, 
         modelName: "RoverScientificTools", 
+        tableName: "rover_scientific_tools",
         freezeTableName: true, 
+        timestamps: false,
     }
 );
 export default RoverScientificTools;

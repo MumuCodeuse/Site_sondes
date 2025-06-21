@@ -25,7 +25,9 @@ EventMission.init(
     {
         sequelize, 
         modelName: "EventMission", 
+        tableName: "event_mission",
         freezeTableName: true, 
+        timestamps: false,
     }
 );
 export default EventMission;

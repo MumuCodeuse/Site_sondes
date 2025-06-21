@@ -41,7 +41,9 @@ Rover.init(
     {
         sequelize, 
         modelName: "Rover", 
+        tableName: "rover",
         freezeTableName: true, 
+        timestamps: false,
     }
 );
 export default Rover;

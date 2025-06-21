@@ -24,3 +24,6 @@ yarn-error.log*
 .env
 id_rsa_github
 id_rsa_github.pub
+
+# Keys
+/keys

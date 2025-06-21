@@ -31,7 +31,9 @@ ElementProbe.init(
     {
         sequelize, 
         modelName: "ElementProbe", 
+        tableName: "element_probe",
         freezeTableName: true, 
+        timestamps: false,
     }
 );
 
