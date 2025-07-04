@@ -1,5 +1,3 @@
--- Verify site_sondes:init-db on pg
--- Deploy site_sondes:init-db to pg
 
 BEGIN;
 

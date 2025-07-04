@@ -1,5 +1,6 @@
 %syntax-version=1.0.0
 %project=site_sondes
 
-init-db 2025-04-27T16:00:32Z Muriel <m.ralu@orange.fr> # Initialisation de la base de données
-create-tables 2025-06-09T18:10:42Z Muriel <m.ralu@orange.fr> # Update sql tables 09062025
+initdb 2025-07-03T21:20:40Z Muriel <m.ralu@orange.fr> # Initialisation DB
+createtables 2025-07-03T21:20:41Z Muriel <m.ralu@orange.fr> # Création des tables
+addadmintable 2025-07-03T21:20:41Z Muriel <m.ralu@orange.fr> # Ajout table admin

@@ -1,9 +1,7 @@
--- Deploy site_sondes:init-db to pg
-
 BEGIN;
---Sondes spatiales
+
   DROP TABLE IF EXISTS space_probe CASCADE;
-  CREATE TABLE space_probe (
+  CREATE TABLE public.space_probe (
     space_probe_id SERIAL PRIMARY KEY,
     name_space_probe VARCHAR(100) NOT NULL,
     year_launch_space_probe SMALLINT,

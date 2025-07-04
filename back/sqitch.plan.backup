@@ -1,0 +1,6 @@
+%syntax-version=1.0.0
+%project=site_sondes
+
+initdb 2025-04-27T16:00:32Z Muriel deploy/initdb.sql revert/initdb.sql verify/initdb.sql
+createtables 2025-06-09T18:10:42Z Muriel deploy/createtables.sql revert/createtables.sql verify/createtables.sql
+addadmintable 2025-06-24T19:48Z Muriel deploy/addadmintable.sql revert/addadmintable.sql verify/addadmintable.sql
