@@ -13,11 +13,13 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "eslint-plugin-security": "^3.0.1",
     "express": "^5.1.0",
     "glob": "^11.0.2",
+    "jsonwebtoken": "^9.0.2",
     "lru-cache": "^11.1.0",
     "pg": "^8.15.6",
     "pg-hstore": "^2.3.4",

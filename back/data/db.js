@@ -5,6 +5,7 @@ import pkg from 'pg';
 // Importation du module dotenv, qui permet de charger les variables d'environnement définies dans un fichier .env.
 // Ces variables permettent de ne pas exposer directement des informations sensibles (comme les identifiants de connexion).
 import dotenv from 'dotenv';
+import { db } from '../utils/config';
 
 // Extraction de 'Pool' depuis le module 'pg'. Comme 'pg' est en CommonJS, on récupère les éléments par déstructuration.
 const { Pool } = pkg;  
@@ -17,11 +18,11 @@ dotenv.config();
 let pool;
 try {
     pool = new Pool({
-        host: process.env.DB_HOST,      // Adresse du serveur PostgreSQL (ex: localhost en développement)
-        port: process.env.DB_PORT,      // Port utilisé par PostgreSQL (par défaut, c'est 5432)
-        user: process.env.DB_USER,      // Nom d'utilisateur défini dans le fichier .env
-        password: process.env.DB_PASSWORD,  // Mot de passe de l'utilisateur PostgreSQL (défini dans .env)
-        database: process.env.DB_NAME   // Nom de la base de données à laquelle se connecter
+        host: db.host,      // Adresse du serveur PostgreSQL 
+        port: db.port,      // Port utilisé par PostgreSQL (par défaut, c'est 5432)
+        user: db.user,      // Nom d'utilisateur défini dans le fichier .env
+        // password:db.password,  // Mot de passe de l'utilisateur PostgreSQL (défini dans .env)
+        database: db.name   // Nom de la base de données à laquelle se connecter
     });
     console.log("✅ Connexion réussie à PostgreSQL");
 

@@ -13,6 +13,6 @@ const spaceProbeRouter = Router();
 spaceProbeRouter.get("/space_probes", withErrorHandler(spaceProbeControlleur.getAllSpaceProbes));
 spaceProbeRouter.get("/space_probe/:id", withErrorHandler(spaceProbeControlleur.getSpaceProbeById));
 
-
+// Routes Admin
 
 export default spaceProbeRouter;
