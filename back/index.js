@@ -10,7 +10,7 @@ import express from "express";
 import cors from "cors";
 import bodyparser from "body-parser";
 
-// 🧮🧮🧮 BASE DE DONNEES ET   MODELES DE BASE ET ASSOCIATIONS
+// 🧮🧮🧮 BASE DE DONNEES ET MODELES DE BASE ET ASSOCIATIONS
 import sequelize, { connectDB } from "./data/sequelize.js"; // Connexion avec Sequelize
 import { modelsBase, modelsAssociation } from "./data/index.js"; // Importation des modèles de données
 
@@ -42,7 +42,7 @@ import spaceProbeRouter from "./routers/spaceProbesRouter.js";
 //Montage des routers sur endpoints
 app.use("/api", spaceProbeRouter);
 // app.use('/api', roverRouter);
-// app.use('/api', roverRouter);
+// app.use('/api', missionRouter);
 
 // 🧪🧪🧪 ROUTE DEBUG (affiche les routes montées)
 app.get("/debug-routes", (req, res) => {
@@ -67,8 +67,8 @@ app.use((err, req, res, next) => {
 // 🔥🔥🔥DEMARRAGE DU SERVEUR
 async function startServer() {
   try {
-    await sequelize.authenticate(); // Vérifie la connexion à la base de données
-    console.log("✅ Connexion à la base de données réussie !");
+   // await sequelize.authenticate(); // Vérifie la connexion à la base de données
+    //console.log("✅ Connexion à la base de données réussie !"); A supprimer, à vérifier
 
     await connectDB(); // Vérifie la connexion à la base de données
     console.log("✅ Base de données connectée avec succès !");

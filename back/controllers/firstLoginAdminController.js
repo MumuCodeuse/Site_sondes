@@ -53,7 +53,7 @@ app.post("/firstLogin", async (req, res) => {
 // Ce formulaire est uniquement visible si le Front a reçu un token valide avec un rôle “admin”.
 
 // -----------------------------------------------------------------------------------------------
-// 2. Réception nouveau mot de passe et enregistrement dans bDD postgresql via sequelize
+// 2. Réception nouveau mot de passe et enregistrement dans Bdd postgresql via sequelize
 
 app.post("/changePassword", async (req, res) => {
   try {

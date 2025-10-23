@@ -61,7 +61,8 @@ app.post("/login", async (req, res) => {
 //6. Nombre de tentatives a définir avant blocage temporaire : pour éviter les brute force attacks: A developper
 
 
-// -------------------------------------------------------------------------------------------------------
+//7 . Créer le Router 
+// -------------------------------------------------------------------------
 // Gestion de l'oubli de mot de passe : développer
 
 
