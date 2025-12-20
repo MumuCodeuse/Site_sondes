@@ -36,11 +36,13 @@ app.use(bodyparser.urlencoded({ extended: true })); // permet de parser les donn
 
 // 🛣️🛣️🛣️ ROUTAGE
 import spaceProbeRouter from "./routers/spaceProbesRouter.js";
+import loginRouter from "./routers/loginRouter.js";
 // import roverRouter from './routers/roversRouter.js';
 // import missions from './routers/missionsRouter.js';
 
 //Montage des routers sur endpoints
 app.use("/api", spaceProbeRouter);
+app.use("/api", loginRouter);
 // app.use('/api', roverRouter);
 // app.use('/api', missionRouter);
 

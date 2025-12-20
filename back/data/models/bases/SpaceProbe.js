@@ -3,7 +3,7 @@
 //Sequelize → Permet d'interagir avec la base SQL.
 //DataTypes → Définit le type de chaque colonne (STRING, INTEGER, etc.).
 //Model → Permet de créer des modèles Sequelize.
-//💡 C'est indispensable pour définir SpaceProbe comme un modèle Sequelize
+
 
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../../sequelize.js"; // Connexion PostgreSQL

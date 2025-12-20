@@ -19,12 +19,15 @@ export const db = {
 };
 
 // Clés JWT
-export const jwt = {
-  jwtPrivateKeyPath : process.env.JWT_PRIVATE_KEY_PATH,
-  jwtPublicKeyPath : process.env.JWT_PUBLIC_KEY_PATH ,
-  jwtPrivateKey : fs.readFileSync(jwtPrivateKeyPath, "utf8"),
-  jwtPublicKey : fs.readFileSync(jwtPublicKeyPath, "utf8"),
-};
+  const jwtPrivateKeyPath = process.env.JWT_PRIVATE_KEY_PATH;
+  const jwtPublicKeyPath = process.env.JWT_PUBLIC_KEY_PATH;
+  
+  export const jwt = {
+    jwtPrivateKeyPath,
+    jwtPublicKeyPath,
+    jwtPrivateKey : fs.readFileSync(jwtPrivateKeyPath, "utf8"),
+    jwtPublicKey : fs.readFileSync(jwtPublicKeyPath, "utf8"),
+  }
 
 // Infos Admin
 export const firstLoginPassword = process.env.PASSWORD_FIRST_LOGIN;
