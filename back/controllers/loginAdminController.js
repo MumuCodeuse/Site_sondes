@@ -7,7 +7,7 @@
 import Administrator from "../data/models/bases/Administrator.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import fs from "fs";
+import Joi from "joi";
 import { jwt } from "./utils/config.js";
 
 // 3.  Récupération email et mot de passe du formulaire de connexion
@@ -16,6 +16,25 @@ import { jwt } from "./utils/config.js";
 const loginAdmin = async (req, res) => {
   const { emailForm, passwordForm } = req.body;
 
+  const schemaLoginAPI = Joi.object({
+    emailForm: joi.string().email().required(),
+    passwordForm: joi
+      .string()
+      .min(8)
+      .max(50)
+      .pattern(/^[A-Za-z0-9!@#$%^&*()_\-+=]+$/)
+      .required(),
+  });
+
+  const validation = schemaLoginAPI.validate(req.body);
+
+  if (validation.error) {
+    return res.status(400).json({
+      success: false,
+      message: validation.error.details[0].message,
+    });
+  }
+
   // Récupération dans la bdd de l'administrateur correspondant
   try {
     const admin = await Administrator.findOne({
@@ -23,7 +42,7 @@ const loginAdmin = async (req, res) => {
     });
 
     if (!admin) {
-      return res.status(401).json({ message: "Admin inconnu" });
+      return res.status(401).json({ success: false, errorMessage: "Admin inconnu" });
     }
 
     // Comparaison mot de passe
@@ -31,14 +50,14 @@ const loginAdmin = async (req, res) => {
 
     const isMatch = await bcrypt.compare(passwordForm, passwordHash);
     if (!isMatch) {
-      res.satus(401).json({ message: "Admin inconnu" });
+      return res.satus(401).json({ success: false, errorMessage: "Admin inconnu" });
     }
 
-    //4. Récupérer l'ID, email et le rôle de l'administrateur correspondantConstruction du token pour le renvoyer
+    //4. Récupérer l'ID, email et le rôle de l'administrateur correspondant. Construction du token pour le renvoyer
     const tokenConstruction = {
-      idAdmin: await admin.admin_id,
-      emailAdmin: await admin.email,
-      roleAdmin: await admin.role,
+      idAdmin: admin.admin_id,
+      emailAdmin: admin.email,
+      roleAdmin: admin.role,
     };
     const optionToken = {
       algorithm: "RS256",
@@ -46,13 +65,16 @@ const loginAdmin = async (req, res) => {
     };
     //5. Envoie du token, d'un message de confirmation et accès à l'interface
     const token = jwt.sign(tokenConstruction, jwt.jwtPrivateKey, optionToken);
-    return res.status(200).json({ token, message: "Accès autorisé" });
+    return res.status(200).json({ success: true, token, message: "Accès autorisé" });
 
     // Accès à l'interface
   } catch (error) {
     return res
       .status(500)
-      .json({ message: "Erreur dans la récupération des données" });
+      .json({
+        success: false,
+        errorMessage: "Erreur dans la récupération des données",
+      });
   }
 };
 

@@ -1,35 +1,55 @@
 // 1  POST /firstLogin  : Récupération email et mot de passe du formulaire de 1ere connexion
 // vérification du mot de passe temporaire, si OK alors envoie token pour accès au formulaire de changement de mot de passe
 // Intégration de joi à faire
+// https://cursa.app/fr/page/validation-des-donnees-avec-le-package-joi
 
 //import bibliothèque et autre
 import Administrator from "../data/models/bases/Administrator.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import fs from "fs";
+import Joi from "joi";
+
 import { jwt as jwtConfig } from "./utils/config.js";
 
 // HTTPS + headers de sécurité pour protéger les échanges.
 // 1ere connexion avec mot de passe temporaire pour s'identifier
 const firstLoginAPI = async (req, res) => {
   const { emailForm, temporaryPassword } = req.body;
+  const schemaFirstLoginAPI = Joi.object({
+    emailForm: joi.string().email().required(),
+    temporaryPassword: joi
+      .string()
+      .min(8)
+      .max(50)
+      .pattern(/^[A-Za-z0-9!@#$%^&*()_\-+=]+$/)
+      .required(),
+  });
+
+  const validation = schemaFirstLoginAPI.validate(req.body);
+
+  if (validation.error) {
+    return res.status(400).json({
+      success: false,
+      errorMessage: validation.error.details[0].message,
+    });
+  }
+
   try {
     const admin = await Administrator.findOne({
       where: { email: emailForm },
     });
     if (!admin) {
-      return res
-        .status(404)
-        .json({
-          message:
-            "Vous n'êtes pas l'administratrice, vous ne serez pas connecté",
-        });
+      return res.status(404).json({
+        success: false,
+        errorMessage: "Vous n'êtes pas l'administratrice",
+      });
     }
     const isMatch = await bcrypt.compare(temporaryPassword, admin.password);
     if (!isMatch) {
-      return res
-        .status(401)
-        .json({ success: false, message: "Mauvais mot de passe" });
+      return res.status(401).json({
+        success: false,
+        errorMessage: "Mauvais mot de passe",
+      });
     }
 
     //Construction token pour le renvoyer
@@ -43,10 +63,16 @@ const firstLoginAPI = async (req, res) => {
       algorithm: "RS256",
       expiresIn: "2h",
     };
-    const token = jwt.sign(tokenConstruction, jwtConfig.jwtPrivateKey, tokenOptions);
+    const token = jwt.sign(
+      tokenConstruction,
+      jwtConfig.jwtPrivateKey,
+      tokenOptions,
+    );
     return res.status(200).json({ success: true, token });
   } catch (error) {
-    return res.status(500).json({ message: "Erreur serveur" });
+    return res
+      .status(500)
+      .json({ success: false, errorMessage: "Erreur serveur" });
   }
 };
 
@@ -57,15 +83,26 @@ const firstLoginAPI = async (req, res) => {
 // 2. Réception nouveau mot de passe et enregistrement dans Bdd postgresql via sequelize
 
 const newPasswordReception = async (req, res) => {
-  const { emailForm, NewPasswordForm } = req.body;
+  const { emailForm, newPasswordForm } = req.body;
 
-  // Il faut vérifier le token
-  const publicKey = fs.readFileSync("./keys/public.key", "utf8");
-  const decodedJWT = jwt.verify(token, publicKey);
-  
-  const token = req.headers.authorization?.split(" ")[1];
+  const schemaNewPasswordReception = joi.object({
+    emailForm: joi.string().email().required(),
+    newPasswordForm: joi
+      .string()
+      .min(8)
+      .max(50)
+      .pattern(/^[A-Za-z0-9!@#$%^&*()_\-+=]+$/)
+      .required(),
+  });
 
-  if (decodedJWT.roleAdmin === "Administratrice"); // + vérifier si token pas expiré si OK envoyé un 200
+  const validation = schemaNewPasswordReception.validate(req.body);
+
+  if (validation.error) {
+    return res.status(400).json({
+      success: false,
+      errorMessage: validation.error.details[0].message,
+    });
+  }
 
   // Récupération de l'administrateur correspondant
   try {
@@ -75,18 +112,29 @@ const newPasswordReception = async (req, res) => {
       },
     });
 
-    if(!admin) {
-      return res.status(404).json({success: false, message: "Administratrice introuvable"})
+    if (!admin) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Administratrice introuvable" });
     }
 
-    admin.password = NewPasswordForm;
-    
-    await admin.save(),
-    res.status(200).json({ success: true, message: "Nouveau mot de passe enregistré" });
-    
+    const samePassword = await bcrypt.compare(newPasswordForm, admin.password);
+    if (samePassword) {
+      return res.status(400).json({
+        success: false,
+        errorMessage: "Vous devez changer de mot de passe",
+      });
+    }
+    const hashNewPassword = await bcrypt.hash(newPasswordForm, 10);
+    admin.password = hashNewPassword;
+    await admin.save();
+    return res
+      .status(200)
+      .json({ success: true, message: "Nouveau mot de passe enregistré" });
   } catch (error) {
     return res.status(500).json({
-      message: "Votre nouveau mot de pass n'a pas été enregistré, réessayer",
+      errorMessage:
+        "Votre nouveau mot de passe n'a pas été enregistré, réessayer",
     });
   }
 };

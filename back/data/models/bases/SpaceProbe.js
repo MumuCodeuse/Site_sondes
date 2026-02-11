@@ -18,7 +18,7 @@ SpaceProbe.init(
         space_probe_id: {
             type: DataTypes.INTEGER,
             primaryKey: true, // Définit la clé primaire
-            autoIncrement: true, // Correspond au SERIAL dans PostgreSQL
+            autoIncrement: true, // Correspond au SERIAL dans PostgreSQL, incrémentatio automatique
         },
         space_probe_name: {
             type: DataTypes.STRING,
@@ -49,8 +49,8 @@ SpaceProbe.init(
     {
     // options
         sequelize, // Connexion à la base PostgreSQL
-        modelName: "SpaceProbe", // Nom du modèle (Bonne pratique : PascalCase)
-        tableName: "space_probe", // Nom de la table dans la base de données
+        modelName: "SpaceProbe", // Nom du modèle utilisé côté Controleur, JS (Bonne pratique : PascalCase)
+        tableName: "space_probe", // Nom de la table SQL de la base de données
         freezeTableName: true, // Empêche Sequelize de mettre le nom de table au pluriel
         timestamps: false, // Désactive `createdAt` et `updatedAt`
     }

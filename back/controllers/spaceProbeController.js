@@ -1,51 +1,40 @@
-import { EmptyResultError } from "sequelize";
 import SpaceProbe from "../data/models/bases/SpaceProbe.js";
-import Joi from "joi";
 
-//------------------------------------------------------------------------
 // Routes visiteurs
-// obtenir la liste des sondes
+
+// Obtenir la liste des sondes
 const getAllSpaceProbes = async (req, res) => {
   try {
-    const spaceProbes = await SpaceProbe.findAll(); // renvoie d'un tableau
-    if (spaceProbes.length === 0) {
-      return res.status(404).json({ message: "Aucune sonde trouvée" });
-    }
-    return res.status(200).json(spaceProbes);
+    const allSpaceProbes = await SpaceProbe.findAll(); // renvoie d'un tableau qui peut être vide, donc pas besoin de 404
+
+    return res.status(200).json({ success: true, spaceProbes: allSpaceProbes});
   } catch (error) {
-    return res.status(500).json({ message: "Erreur pour accéder à la BDD" });
+    return res
+      .status(500)
+      .json({ success: false, errorMessage: "Erreur pour accéder à la BDD" });
   }
 };
+//--------------------------------------------------------------------------------
 
 // Obtenir une sonde précise
-const idSchema = Joi.object({
-  spaceProbeId: Joi.number().integer().min(1).max(300).required(),
-}).messages({
-  "number.base": "L'ID doit être un nombre",
-  "number.integer": "L'ID doit être un entier",
-  "number.min": "L'ID doit être supérieur ou égal à 1",
-  "number.max": "L'ID doit être inférieur ou égal à 300",
-  "any.required": "L'Id est obligatoire",
-});
 
 const getSpaceProbeById = async (req, res) => {
-  const spaceProbeId = Number(req.params.id);
+  //Middleware getAndValidateId : validation de l'Id via Joi.
 
-  // Validation avec Joi
-  const result = idSchema.validate({ spaceProbeId });
-
-  if (result.error) {
-    return res.status(400).json({ message: result.error.details[0].message });
-    console.log(result);
-  }
+  //--Requête BDD--
   try {
-    const spaceProbe = await SpaceProbe.findByPk(spaceProbeId);
+    const id = req.params.id;
+    const spaceProbe = await SpaceProbe.findByPk(id);
     if (!spaceProbe) {
-      return res.status(404).json({ message: "Sonde spatiale non trouvée" });
+      return res
+        .status(404)
+        .json({ success: false, errorMessage: "Sonde spatiale non trouvée" });
     }
-    return res.status(200).json(spaceProbe);
+    return res.status(200).json({ success: true, spaceProbe: spaceProbe });
   } catch (error) {
-    return res.status(500).json({ message: "Erreur pour accéder à la BDD" });
+    return res
+      .status(500)
+      .json({ success: false, errorMessage: "Erreur pour accéder à la BDD" });
   }
 };
 
@@ -53,82 +42,104 @@ const getSpaceProbeById = async (req, res) => {
 // Routes administratrices
 // MAJ d'une sonde
 
-// récupération de l'ID de la sonde à compléter
-const updateSpaceProbeById = Joi.object({
-  spaceProbeId: Joi.number().integer().min(1).max(300).required(),
-});
-
 const updateSpaceProbe = async (req, res) => {
-  const spaceProbeId = Number(req.params.id);
-  if (isNaN(spaceProbeId)) {
-    return res
-      .status(400)
-      .json({ message: "ID non valide, un nombre est attendu" });
-  }
+  //Middleware getAndValidateId : validation de l'Id via Joi.
+
+  //--Requête BDD--
   try {
-    const spaceProbe = await SpaceProbe.findByPk(spaceProbeId);
+    const id = req.params.id;
+    const spaceProbe = await SpaceProbe.findByPk(id);
 
     if (!spaceProbe) {
-      return res.status(404).json({ message: "Sonde non trouvée" });
+      return res
+        .status(404)
+        .json({ success: false, errorMessage: "Sonde non trouvée" });
     }
 
-    // enregistrer toutes les infos du formulaire de manière plus compacte
-    await spaceProbe.update(req.body);
-    return res.status(200).json({ spaceProbe });
+    // enregistrer les changements
+    const spaceProbeUpdate = await spaceProbe.update({
+      space_probe_name: req.body.spaceProbeName,
+      space_probe_year_launch: req.body.spaceProbeYearLaunch,
+      space_probe_launcher: req.body.spaceProbeLauncher,
+      space_probe_objective: req.body.spaceProbeObjective,
+      space_probe_comment: req.body.spaceProbeComment,
+      space_probe_operating_state: req.body.spaceProbeOperatingState,
+      space_probe_means_propulsion_energy:
+        req.body.spaceProbeMeansPropulsionEnergy,
+      space_probe_image_url: req.body.spaceProbeImageURL,
+    });
+    return res.status(200).json({ success: true, spaceProbe: spaceProbeUpdate });
   } catch (error) {
     return res.status(500).json({
-      message:
+      success: false,
+      errorMessage:
         "Erreur lors de la récupération ou de la mise à jour de la sonde",
     });
   }
 };
 
+//------------------------------------------------------------------------------------------
 // Création d'une sonde
 const createSpaceProbe = async (req, res) => {
   try {
-    const existingProbe = await SpaceProbe.findOne({
-      where: { space_probe_name: req.body.space_probe_name },
+    const existingSpaceProbe = await SpaceProbe.findOne({
+      where: { space_probe_name: req.body.spaceProbeName },
     });
-    if (existingProbe) {
+    if (existingSpaceProbe) {
       return res.status(400).json({
-        error: "Une sonde avec ce nom existe déjà",
+        success: false,
+        errorMessage: "Une sonde avec ce nom existe déjà"
       });
     }
 
-    const newSpaceProbe = await SpaceProbe.create(req.body);
-    return res.status(201).json(newSpaceProbe);
+    const newSpaceProbe = await SpaceProbe.create({
+      space_probe_name: req.body.spaceProbeName,
+      space_probe_year_launch: req.body.spaceProbeYearLaunch,
+      space_probe_launcher: req.body.spaceProbeLauncher,
+      space_probe_objective: req.body.spaceProbeObjective,
+      space_probe_comment: req.body.spaceProbeComment,
+      space_probe_operating_state: req.body.spaceProbeOperatingState,
+      space_probe_means_propulsion_energy:
+        req.body.spaceProbeMeansPropulsionEnergy,
+      space_probe_image_url: req.body.spaceProbeImageURL,
+    });
+    return res.status(201).json({ success: true, spaceProbe: newSpaceProbe });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ message: "Erreur la sonde n'a pas été crééee" });
+    return res.status(500).json({
+      success: false,
+      errorMessage: "Erreur la sonde n'a pas été créée",
+    });
   }
 };
+// ----------------------------------------------------------------------------------
 
 // Suppression d'une sonde
 const deleteSpaceProbe = async (req, res) => {
-  const spaceProbeId = Number(req.params.id);
-  if (isNaN(spaceProbeId)) {
-    return res
-      .status(400)
-      .json({ message: "ID non valide, un nombre est attendu" });
-  }
+  //Middleware getAndValidateId : récupération de l'id et validation de l'Id via Joi.
+
+  //--Requête BDD--
   try {
+    const id = req.params.id;
     const deletedCount = await SpaceProbe.destroy({
-      where: { space_probe_id: spaceProbeId },
+      where: { space_probe_id: id }, // Avec le Model utiliser where :{......
     });
 
-    // Vérification du résultat
+    // Vérification du résultat. Quand utilisation du Model obligé de vérifier si suppression avec deletedCount, destroy renvoi le nombre de ligne supprimée, donc ici : 1
     if (deletedCount === 1) {
-      return res.status(200).json({ message: "La sonde a bien été supprimée" });
-    } else {
       return res
-        .status(404)
-        .json({ message: "Aucune sonde trouvée avec cet ID" });
+        .status(200)
+        .json({ success: true, message: "La sonde a bien été supprimée" });
+    } else {
+      return res.status(404).json({
+        success: false,
+        errorMessage: "Aucune sonde trouvée avec cet ID",
+      });
     }
   } catch (error) {
-    return res
-      .status(500)
-      .json({ message: "Erreur lors de la suppression de la sonde" });
+    return res.status(500).json({
+      success: false,
+      errorMessage: "Erreur lors de la suppression de la sonde",
+    });
   }
 };
 
@@ -139,45 +150,3 @@ export default {
   createSpaceProbe,
   deleteSpaceProbe,
 };
-
-/* Gestion des erreur par JOI
-{
-  error: {
-    details: [
-      {
-        message: '"spaceProbeId" must be greater than or equal to 1',
-        path: ['spaceProbeId'],
-        type: 'number.min',
-        context: { ... }
-      }
-    ]
-  },
-  value: { spaceProbeId: 0 }
-}
-*/
-
-// Récupérationd des infos de la sonde déjà existante pour les afficher dans le formulaire côté front
-
-// Une fois le formulaire complété : Récupérer les infos du formulaire
-/*  const {
-      SBNameForm,
-      SPYearLaunchForm,
-      SPLauncherForm,
-      SPObjectiveForm,
-      SPCommentForm,
-      SPOperatingStateForm,
-      SPMeansPropulsionEnergyForm,
-      SPImageURLForm,
-    } = req.body;
-
-    spaceProbe.space_probe_name = SBNameForm;
-    spaceProbe.space_probe_year_launch = SPYearLaunchForm;
-    spaceProbe.space_probe_launcher = SPLauncherForm;
-    spaceProbe.space_probe_objective = SPObjectiveForm;
-    spaceProbe.space_probe_comment = SPCommentForm;
-    spaceProbe.space_probe_operating_state = SPOperatingStateForm;
-    spaceProbe.space_probe_means_propulsion_energy =
-      SPMeansPropulsionEnergyForm;
-    spaceProbe.space_probe_image_url
-    = SPImageURLForm;
-*/
