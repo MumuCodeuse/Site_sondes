@@ -2,7 +2,7 @@ import ElementProbe from "../data/models/bases/ElementProbe.js";
 
 // Routes visiteurs
 // Accéder à l'ensemble des éléments
-const getAllElementProbe = async (req, res) => {
+const getAllElementsProbe = async (req, res) => {
   try {
     const allElementsProbe = await ElementProbe.findAll();
     if (allElementsProbe.length === 0) {
@@ -115,7 +115,7 @@ const deleteElementProbe = async(req, res) => {
 
 
 export default {
-  getAllElementProbe,
+  getAllElementsProbe,
   getElementProbeById,
   updateElementProbe,
   createElementProbe,

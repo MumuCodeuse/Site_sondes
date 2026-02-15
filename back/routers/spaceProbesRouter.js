@@ -1,17 +1,39 @@
 import { Router } from "express";
-import spaceProbeControlleur from "../controllers/spaceProbeController.js";
-import verifyToken from "../middlewares/verifyToken.js"
+import spaceProbeController from "../controllers/spaceProbeController.js";
+import verifyToken from "../middlewares/verifyToken.js";
 import { getAndValidateId } from "../middlewares/getAndValidateId.js";
 
-const spaceProbeRouter = Router();
+const spaceProbesRouter = Router();
 
 // Routes visiteur
-spaceProbeRouter.get("/space_probes", spaceProbeControlleur.getAllSpaceProbes);
-spaceProbeRouter.get("/space_probes/:id", getAndValidateId, spaceProbeControlleur.getSpaceProbeById);
+spaceProbesRouter.get(
+  "/space_probes", 
+  spaceProbeController.getAllSpaceProbes
+);
+
+spaceProbesRouter.get(
+  "/space_probes/:id",
+  getAndValidateId,
+  spaceProbeController.getSpaceProbeById,
+);
 
 // Routes administratrice
-spaceProbeRouter.post("/space_probes", verifyToken, spaceProbeControlleur.createSpaceProbe);
-spaceProbeRouter.put("/space_probes/:id", verifyToken,getAndValidateId, spaceProbeControlleur.updateSpaceProbe);
-spaceProbeRouter.delete("/space_probes/:id",verifyToken,getAndValidateId, spaceProbeControlleur.deleteSpaceProbe);
+spaceProbesRouter.post(
+  "/space_probes",
+  verifyToken,
+  spaceProbeController.createSpaceProbe,
+);
+spaceProbesRouter.put(
+  "/space_probes/:id",
+  verifyToken,
+  getAndValidateId,
+  spaceProbeController.updateSpaceProbe,
+);
+spaceProbesRouter.delete(
+  "/space_probes/:id",
+  verifyToken,
+  getAndValidateId,
+  spaceProbeController.deleteSpaceProbe,
+);
 
-export default spaceProbeRouter;
+export default spaceProbesRouter;

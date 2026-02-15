@@ -5,7 +5,10 @@ import verifyToken from "../middlewares/verifyToken.js";
 const loginRouter = Router();
 
 // 1ere connexion avec mot de passe temoraire pour s'identifier et renvoi d'un token
-loginRouter.post("/firstLogin", firstLoginAdminController.firstLoginAPI);
+loginRouter.post(
+  "/firstLogin", 
+  firstLoginAdminController.firstLoginAPI
+);
 
 // Nouveau mot de passe et enregistrement dans Bdd postgresql via sequelize
 loginRouter.post(
@@ -15,6 +18,9 @@ loginRouter.post(
 );
 
 // Connexion à l'interface d'admin
-loginRouter.post("/login", loginAdminController.loginAdmin);
+loginRouter.post(
+  "/login", 
+  loginAdminController.loginAdmin
+);
 
 export default loginRouter;

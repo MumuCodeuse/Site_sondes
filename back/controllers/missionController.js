@@ -69,9 +69,7 @@ const getMissionById = async (req, res) => {
  };
 
 
-
 //  Création d'une mission
-
 const createMission = async (req, res) => {
   try {
     const existingMission = await Mission.findOne({
@@ -101,7 +99,6 @@ const createMission = async (req, res) => {
 
 
 // Suppression d'une mision
-
 const deleteMission = async(req, res) => {
   //Middleware getAndValidateId : Validation de l'Id via Joi.
 try{

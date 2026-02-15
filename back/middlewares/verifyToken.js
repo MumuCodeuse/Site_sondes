@@ -1,6 +1,6 @@
 // Vérification du Token
 // il faut récupérer le token dans le header de la requête
-//Charger la clé publique
+// Charger la clé publique
 // vérifier que le header Authorization existe
 // extraire le token
 // vérifier la signature RSA
@@ -13,26 +13,27 @@
 import jwt from "jsonwebtoken";
 import fs from "fs";
 
+const publicKey = fs.readFileSync("./keys/public.key", "utf8");
+
 const verifyToken = (req, res, next) => {
   // 1) Vérifier que le header Authorization existe
   if (!req.headers.authorization) {
-    return res.status(401).json({ success: false, message: "Accès interdit" });
+    return res.status(401).json({ success: false, errorMessage: "Accès interdit" });
     ;
   }
   // 2) Extraire le token
   const token = req.headers.authorization.split(" ")[1];
   if (!token) {
-    return res.status(401).json({ success: false, message: "Accès interdit" });
+    return res.status(401).json({ success: false, errorMessage: "Accès interdit" });
     ;
   }
   try {
     // 3) Vérifier le token
-    const publicKey = fs.readFileSync("./keys/public.key", "utf8");
-    const decodedJWT = jwt.verify(token, publicKey);
+   const decodedJWT = jwt.verify(token, publicKey);
     
     // 4) Vérifier le rôle
     if (decodedJWT.roleAdmin !== "Administratrice") {
-      return res.status(403).json({success: false, message:"Accès interdit"})
+      return res.status(403).json({success: false, errorMessage:"Accès interdit"})
     }
     // 5) Attacher le payload à la requête
       req.admin = decodedJWT;
@@ -40,7 +41,7 @@ const verifyToken = (req, res, next) => {
       // 6) Continuer vers la route protégée
       next();
     } catch(error) {
-    return res.status(401).json({success: false, message: "Identification incorrecte"})
+    return res.status(401).json({success: false, errorMessage: "Identification incorrecte"})
   }
 };
 

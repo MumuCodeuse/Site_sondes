@@ -1,11 +1,11 @@
 import Joi from "joi";
 
   // --Récupération de l'id et Vérification-Validation Joi--
-export function getAndValidateID(req, res, next) {
+export function getAndValidateId(req, res, next) {
   const id = Number(req.params.id);
   
   const idSchema = Joi.object({
-  id: Joi.number().min(1).max(300).required()}).messages({
+  id: Joi.number().integer().min(1).max(300).required()}).messages({
     "number.base": "L'ID doit être un nombre",
     "number.integer": "L'ID doit être un entier",
     "number.min": "L'ID doit être supérieur ou égal à 1",

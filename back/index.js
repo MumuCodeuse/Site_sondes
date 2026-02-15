@@ -30,21 +30,25 @@ const app = express();
 
 // MIDDLEWARES GLOBAUX
 app.use(express.json()); // Middleware qui permet à l'application de comprendre les données JSON dans le corps des requêtes HTTP.
-app.use(cors()); // autorise les requêtes venant d'autres domaines
 app.use(bodyparser.json()); // permet de parser le corps des requêtes en JSON
 app.use(bodyparser.urlencoded({ extended: true })); // permet de parser les données URL-encodées
 
+// Autorisation
+app.use(cors({origin : 'http://localhost:5500' }));
+
 // ROUTAGE
-import spaceProbeRouter from "./routers/spaceProbesRouter.js";
+import spaceProbesRouter from "./routers/spaceProbesRouter.js";
 import loginRouter from "./routers/loginRouter.js";
-// import roverRouter from './routers/roversRouter.js';
-// import missions from './routers/missionsRouter.js';
+import roversRouter from "./routers/roversRouter.js";
+import missionsRouter from "./routers/missionsRouter.js";
+import elementProbesRouter from "./routers/elementProbesRouter.js";
 
 //Montage des routers sur endpoints
-app.use("/api", spaceProbeRouter);
+app.use("/api", spaceProbesRouter);
 app.use("/api", loginRouter);
-// app.use('/api', roverRouter);
-// app.use('/api', missionRouter);
+app.use("/api", roversRouter);
+app.use("/api", missionsRouter);
+app.use("/api", elementProbesRouter);
 
 // ROUTE DEBUG (affiche les routes montées)
 app.get("/debug-routes", (req, res) => {

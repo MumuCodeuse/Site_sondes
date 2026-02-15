@@ -6,9 +6,10 @@
 //2. import bibliothèque et autre
 import Administrator from "../data/models/bases/Administrator.js";
 import jwt from "jsonwebtoken";
+import { jwt as jwtConfig } from "../utils/config.js";
 import bcrypt from "bcrypt";
 import Joi from "joi";
-import { jwt } from "./utils/config.js";
+
 
 // 3.  Récupération email et mot de passe du formulaire de connexion
 // POST /login - Authentification de façon classique
@@ -17,7 +18,7 @@ const loginAdmin = async (req, res) => {
   const { emailForm, passwordForm } = req.body;
 
   const schemaLoginAPI = Joi.object({
-    emailForm: joi.string().email().required(),
+    emailForm: Joi.string().email().required(),
     passwordForm: joi
       .string()
       .min(8)
@@ -64,7 +65,7 @@ const loginAdmin = async (req, res) => {
       expiresIn: "2h",
     };
     //5. Envoie du token, d'un message de confirmation et accès à l'interface
-    const token = jwt.sign(tokenConstruction, jwt.jwtPrivateKey, optionToken);
+    const token = jwt.sign(tokenConstruction, jwtConfig.jwtPrivateKey, optionToken);
     return res.status(200).json({ success: true, token, message: "Accès autorisé" });
 
     // Accès à l'interface
