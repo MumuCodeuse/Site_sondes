@@ -1,74 +1,10 @@
-// ENVIRONNEMENT
+import app from "./app.js";
 import dotenv from "dotenv";
-dotenv.config(); // récupère automatiquement les valeurs de connexion stockées dans .env.
+dotenv.config();
 
-// CONFIGURATION
-import { errorInDev, port } from "./utils/config.js";
+import { connectDB } from "./data/sequelize.js"; // Connexion avec Sequelize
 
-// MODULES EXTERNES
-import express from "express";
-import cors from "cors";
-import bodyparser from "body-parser";
-
-// BASE DE DONNEES ET MODELES DE BASE ET ASSOCIATIONS
-import sequelize, { connectDB } from "./data/sequelize.js"; // Connexion avec Sequelize
-import { modelsBase, modelsAssociation } from "./data/index.js"; // Importation des modèles de données
-
-modelsAssociation.associateProbeModels();
-modelsAssociation.associateRoverModels();
-modelsAssociation.associateMissionModels();
-
-//pour référencer des fichiers et dossiers relatifs : A faire
-// import { dirname } from "path";
-// import { fileURLToPath } from "url";
-
-// const __dirname = dirname(fileURLToPath(import.meta.url));
-// console.log(`Répertoire du projet : ${__dirname}`);
-
-// INITIALISATION DE L'APPLICATION
-const app = express();
-
-// MIDDLEWARES GLOBAUX
-app.use(express.json()); // Middleware qui permet à l'application de comprendre les données JSON dans le corps des requêtes HTTP.
-app.use(bodyparser.json()); // permet de parser le corps des requêtes en JSON
-app.use(bodyparser.urlencoded({ extended: true })); // permet de parser les données URL-encodées
-
-// Autorisation
-app.use(cors({origin : 'http://localhost:5500' }));
-
-// ROUTAGE
-import spaceProbesRouter from "./routers/spaceProbesRouter.js";
-import loginRouter from "./routers/loginRouter.js";
-import roversRouter from "./routers/roversRouter.js";
-import missionsRouter from "./routers/missionsRouter.js";
-import elementProbesRouter from "./routers/elementProbesRouter.js";
-
-//Montage des routers sur endpoints
-app.use("/api", spaceProbesRouter);
-app.use("/api", loginRouter);
-app.use("/api", roversRouter);
-app.use("/api", missionsRouter);
-app.use("/api", elementProbesRouter);
-
-// ROUTE DEBUG (affiche les routes montées)
-app.get("/debug-routes", (req, res) => {
-  const routes = app._router.stack
-    .filter((layer) => layer.route)
-    .map((layer) => layer.route.path);
-  res.json({ routes });
-});
-
-// EXPORTS (utiles pour les tests)
-export { modelsBase, modelsAssociation };
-export default app;
-
-// MIDDLEWARE DE GESTION DES ERREURS
-// app.use((err, req, res, next) => {
-//   console.error("Erreur serveur :", err);
-//   res
-//     .status(err.status || 500)
-//     .json({ message: err.message || "Erreur interne du serveur" });
-// });
+const port = process.env.PORT;
 
 // DEMARRAGE DU SERVEUR
 async function startServer() {
@@ -80,11 +16,11 @@ async function startServer() {
     console.log("Base de données connectée avec succès !");
 
     // Démarrage du serveur uniquement en mode normal
-    if (process.env.NODE_ENV !== "test") {
-      app.listen(port, () => {
-        console.log("Serveur démarré sur le port 3000");
+   
+    app.listen(port, () => {
+    console.log("Serveur démarré sur le port 3000");
       });
-    }
+      
   } catch (error) {
     console.error("Erreur lors du démarrage du serveur :", error);
     process.exit(1); // Arrête l'application si la connexion échoue

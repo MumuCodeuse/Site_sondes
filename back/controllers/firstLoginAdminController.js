@@ -26,7 +26,7 @@ const firstLoginAPI = async (req, res) => {
       .string()
       .min(8)
       .max(50)
-      .pattern(/^[A-Za-z0-9!@#$%^&*()_\-+=]+$/)
+      .pattern(/^[\p{L}\p{N}\s'’,.!?@#$%^&*()_\-+=]+$/u)
       .required(),
   });
 
