@@ -1,0 +1,122 @@
+@font-face {
+  font-family: "Antaro";
+  src: url("../fonts/Antaro.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "JosefinSemiBold";
+  src: url("../fonts/JosefinsansSemibold.ttf") format("truetype");
+}
+
+body {
+  font-family: "JosefinSemiBold", sans-serif;
+}
+
+body {
+  font-family: "Antaro", sans-serif;
+  background: #c5c3c3;
+  margin: 0;
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-family: "JosefinSemiBold", sans-serif;
+  font-size: 48px;
+  margin-bottom: 25px;
+  color: #333;
+  text-align: center;
+}
+
+.form-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 40px; /* marge gauche + droite */
+  box-sizing: border-box;
+}
+
+
+form {
+  background: rgb(235, 233, 233);
+  padding: 30px;
+  border-radius: 12px;
+  width: 600px; /* plus large pour équilibrer */
+  max-width: 90%; /* pour éviter que ça déborde sur petits écrans */
+  margin: 0 auto; /* centre parfaitement */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  box-sizing: border-box;
+}
+
+
+label {
+  display: block;
+  margin-bottom: 4px;
+  font-family: "JosefinSemiBold", sans-serif;
+  font-size: 21px;
+  font-weight: 1000;
+  color: #333;
+}
+
+input, textarea {
+  margin-top: 0; /* supprime l’espace inutile au-dessus */ margin-bottom: 18px; /* espace normal en dessous */ 
+  width: 100%; 
+  padding: 12px; 
+  border: 1px solid #ddd; 
+  border-radius: 8px; 
+  font-size: 19px; 
+  background: #fafafa;
+  box-sizing: border-box;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #4a90e2;
+  background: white;
+}
+
+textarea {
+  min-height: 150px;
+  resize: vertical;
+  font-size: 16px;
+  font-weight: 1000;
+  font-family: "Antaro"
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(
+    180deg,
+    #d83737 0%,
+    #e6e6e6 20%,
+    #cfcfcf 50%,
+    #e8e8e8 80%,
+    #d83737 100%
+  );
+  color: #1d1c1c;
+  border: 1px solid #b3b3b3;
+  border-radius: 8px;
+  font-size: 26px;
+  font-weight: 2000;
+  font-family: "JosefinSemiBold", sans-serif;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+
+button:hover {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #f2f2f2 25%,
+    #d9d9d9 60%,
+    #f0f0f0 85%,
+    #c7c7c7 100%
+  );
+}
+
+

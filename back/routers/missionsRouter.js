@@ -17,10 +17,17 @@ missionsRouteur.get(
   missionController.getMissionById);
 
 // Routes Administratrice
-missionsRouteur.post(
+
+/*missionsRouteur.post(
   "/missions", 
   verifyToken, 
   missionController.createMission);
+*/
+// Routes Administratrice essai simple formulaire
+missionsRouteur.post(
+  "/missions",  
+  missionController.createMission);
+
 
 missionsRouteur.put(
   "/missions/:id", 

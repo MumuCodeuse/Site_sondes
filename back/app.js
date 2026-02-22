@@ -23,6 +23,8 @@ modelsAssociation.associateMissionModels();
 // INITIALISATION DE L'APPLICATION
 const app = express();
 
+app.use(express.static("public"));
+
 // MIDDLEWARES GLOBAUX
 app.use(express.json()); // permet aussi de parser le corps des requêtes en JSON, body-parser est aujourd’hui intégré nativement dans Express.
 app.use(express.urlencoded({ extended: true })); // permet de parser les données URL-encodées

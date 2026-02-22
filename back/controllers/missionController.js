@@ -129,6 +129,7 @@ const createMission = async (req, res) => {
 
     return res.status(200).json({ success: true, mission: newMission });
   } catch (error) {
+    console.error("ERREUR CREATE MISSION :", error);
     return res
       .status(500)
       .json({ success: false, errorMessage: "la mission n'a pas été créée" });

@@ -14,16 +14,12 @@ import { jwt as jwtConfig } from "../utils/config.js";
 // HTTPS + headers de sécurité pour protéger les échanges.
 // Point à faire
 
-
-
-
 // 1ere connexion avec mot de passe temporaire pour s'identifier
 const firstLoginAPI = async (req, res) => {
   const { emailForm, temporaryPassword } = req.body;
   const schemaFirstLoginAPI = Joi.object({
     emailForm: Joi.string().email().required(),
-    temporaryPassword: Joi
-      .string()
+    temporaryPassword: Joi.string()
       .min(8)
       .max(50)
       .pattern(/^[\p{L}\p{N}\s'’,.!?@#$%^&*()_\-+=]+$/u)

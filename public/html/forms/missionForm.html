@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nouvelle mission à  créer</title>
+  <link rel="stylesheet" href="../../css/missionForm.css">
+  <script src="../../js/forms/missionForm.js" defer></script>
+
+</head>
+
+    <body>
+      <h1> Formulaire à compléter pour créer une mission </h1>
+     <div class="form-container">
+      <form id="formMission">
+
+          <div>
+            <label for="name"> Nom de la mission </label>
+            <input  id="name" type="text" name="missionName" minlength="2" maxlength="50" required>
+          </div>
+
+          <div>
+              <label for="start-year"> Indiquer l'année de commencement de la mission </label>
+              <input id="start-year" type= "text" name="missionStartYear">
+          </div>
+
+          <div>
+              <label for="end-year"> Indiquer l'année de fin de la mission </label>
+              <input id="end-year" type="text" name="missionEndYear">
+          </div>
+
+          <div>
+              <label for="objective"> Décrire l'objectif de la mission </label>
+              <textarea id="objective" name="missionObjective" rows="20" cols="100"> </textarea>
+          </div>
+
+          <div>
+              <label for="url"> Indiquer l'url de l'image </label>
+              <input id="url" type="url" name="missionImageUrl" size="30">
+          </div>
+
+            <button id= "button" type="submit">Créer la mission</button>
+      </form>
+      </div> 
+    </body>
+</html>
+
+
