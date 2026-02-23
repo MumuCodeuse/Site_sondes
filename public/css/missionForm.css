@@ -9,14 +9,10 @@
 }
 
 body {
-  font-family: "JosefinSemiBold", sans-serif;
-}
-
-body {
   font-family: "Antaro", sans-serif;
   background: #c5c3c3;
   margin: 0;
-  padding: 40px 0;
+  padding: 2.5rem 0; /* 40px */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,8 +20,8 @@ body {
 
 h1 {
   font-family: "JosefinSemiBold", sans-serif;
-  font-size: 48px;
-  margin-bottom: 25px;
+  font-size: 3rem; /* 48px */
+  margin-bottom: 1.5625rem; /* 25px */
   color: #333;
   text-align: center;
 }
@@ -34,39 +30,63 @@ h1 {
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 0 40px; /* marge gauche + droite */
+  padding: 0 2.5rem; /* 40px */
   box-sizing: border-box;
 }
-
 
 form {
   background: rgb(235, 233, 233);
-  padding: 30px;
-  border-radius: 12px;
-  width: 600px; /* plus large pour équilibrer */
-  max-width: 90%; /* pour éviter que ça déborde sur petits écrans */
-  margin: 0 auto; /* centre parfaitement */
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  padding: 1.875rem; /* 30px */
+  border-radius: 0.75rem; /* 12px */
+  width: 65rem; /* 600px */
+  max-width: 90%;
+  margin: 0 auto;
+  box-shadow: 0 0.25rem 1.25rem rgba(0,0,0,0.05); /* 4px 20px */
   box-sizing: border-box;
 }
 
-
 label {
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 0.25rem; /* 4px */
   font-family: "JosefinSemiBold", sans-serif;
-  font-size: 21px;
+  font-size: 1.3125rem; /* 21px */
   font-weight: 1000;
   color: #333;
 }
 
-input, textarea {
-  margin-top: 0; /* supprime l’espace inutile au-dessus */ margin-bottom: 18px; /* espace normal en dessous */ 
-  width: 100%; 
-  padding: 12px; 
-  border: 1px solid #ddd; 
-  border-radius: 8px; 
-  font-size: 19px; 
+input {
+  margin-top: 0;
+  margin-bottom: 1.125rem; /* 18px */
+  width: 100%;
+  padding: 0.75rem; /* 12px */
+  border: 1px solid #ddd;
+  border-radius: 0.5rem; /* 8px */
+  font-size: 1.1875rem; /* 19px */
+  background: #fafafa;
+  box-sizing: border-box;
+}
+
+.year-wrapper {
+  display: flex;
+  gap: 2rem; /* espace entre les deux colonnes */
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.year-field {
+  flex: 1; /* prend toute la place disponible */
+  display: flex;
+  flex-direction: column;
+}
+
+textarea {
+  margin-top: 0;
+  margin-bottom: 1.125rem; /* 18px */
+  width: 100%;
+  padding: 0.75rem; /* 12px */
+  border: 1px solid #ddd;
+  border-radius: 0.5rem; /* 8px */
+  font-size: 1.1875rem; /* 19px */
   background: #fafafa;
   box-sizing: border-box;
 }
@@ -78,35 +98,75 @@ input:focus, textarea:focus {
 }
 
 textarea {
-  min-height: 150px;
+  min-height: 9.375rem; /* 150px */
   resize: vertical;
-  font-size: 16px;
+  font-size: 1rem; /* 16px */
   font-weight: 1000;
-  font-family: "Antaro"
+  font-family: "Antaro";
+}
+
+.objective-wrapper {
+  display: flex;
+  gap: 1.25rem; /* 20px */
+}
+
+.correction-box {
+  width: 28rem; /* 400px */
+  min-height: 26.8rem; /* 200px */
+  border: 1px solid #ccc;
+  padding: 0.625rem; /* 10px */
+  background: #fafafa;
 }
 
 button {
   width: 100%;
-  padding: 14px;
+  padding: 0.875rem; /* 14px */
   background: linear-gradient(
     180deg,
-    #d83737 0%,
+    #0d922a 0%,
     #e6e6e6 20%,
     #cfcfcf 50%,
     #e8e8e8 80%,
-    #d83737 100%
+    #0d922a 100%
   );
-  color: #1d1c1c;
+  color: #0d922a;
   border: 1px solid #b3b3b3;
-  border-radius: 8px;
-  font-size: 26px;
+  border-radius: 0.5rem; /* 8px */
+  font-size: 1.625rem; /* 26px */
   font-weight: 2000;
   font-family: "JosefinSemiBold", sans-serif;
   cursor: pointer;
   transition: 0.2s;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  box-shadow: 0 0.125rem 0.375rem rgba(0,0,0,0.15); /* 2px 6px */
 }
 
+#button-verif-orthographe { 
+  background: linear-gradient(
+    180deg,
+    #f5ad28 0%, /* bande colorée en haut */
+    #ffffff 20%, /* début du blanc */
+    #ffffff 80%, /* fin du blanc */
+    #f5ad28 100% /* bande colorée en bas */
+  );
+  color: #f5ad28; 
+  margin-bottom: 1rem; }
+
+#button-correction { 
+  background: linear-gradient(
+    180deg,
+    #62f528 0%,
+    #ffffff 20%,
+    #ffffff 80%,
+    #62f528 100%
+  );
+  color: #17e444; 
+  margin-bottom: 1rem; }
+
+.button-ortho-wrapper {
+  display: flex;
+  gap: 1.25rem;
+  
+}
 
 button:hover {
   background: linear-gradient(
@@ -118,5 +178,3 @@ button:hover {
     #c7c7c7 100%
   );
 }
-
-

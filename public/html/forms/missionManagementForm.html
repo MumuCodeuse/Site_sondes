@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulaire mission</title>
+  <link rel="stylesheet" href="../../css/missionForm.css">
+  <script src="../../js/forms/missionForm.js" defer></script>
+  <script src="../../js/ai.js" defer></script>
+
+</head>
+
+    <body>
+      <h1> Formulaire mission pour créer, mettre à jour ou supprimer une mission </h1>
+     <div class="form-container">
+      <form id="formMission">
+
+          <div>
+            <label for="name"> Nom de la mission </label>
+            <input  id="name" type="text" name="missionName" minlength="2" maxlength="50" required>
+          </div>
+
+          <div class="year-wrapper">
+          <div class="year-field">
+              <label for="start-year"> Indiquer l'année de commencement de la mission </label>
+              <input id="start-year" type= "text" name="missionStartYear">
+          </div>
+
+          <div class="year-field">
+              <label for="end-year"> Indiquer l'année de fin de la mission </label>
+              <input id="end-year" type="text" name="missionEndYear">
+          </div>
+          </div>
+
+          <div class="objective-wrapper">
+            <div class="objective-original">
+              <label for="objective"> Décrire l'objectif de la mission </label>
+              <textarea id="objective" name="missionObjective" rows="20" cols="100"> </textarea>
+            </div>
+
+            <div class="objective-correction">
+                <label>Correction proposée</label>
+                <div id="correctionZone" class="correction-box"></div>
+            </div>
+          </div>
+
+          <div class="button-ortho-wrapper">
+          <button id="button-verif-orthographe" type="button">Vérifier l'orthographe</button>
+          <button id="button-correction" type="button">Appliquer la correction</button>
+          </div>
+
+          <div>
+              <label for="url"> Indiquer l'url de l'image </label>
+              <input id="url" type="url" name="missionImageUrl" size="30">
+          </div>
+
+            <button id= "buttonSubmit" type="submit">Créer la mission</button>
+      </form>
+      </div> 
+    </body>
+</html>
+
+

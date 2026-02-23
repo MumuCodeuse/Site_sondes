@@ -19,6 +19,7 @@ Mission.init(
     mission_end_year: {
       type: DataTypes.INTEGER,
       field: "end_year",
+      allowNull: true, 
     },
     mission_objective: {
       type: DataTypes.TEXT,

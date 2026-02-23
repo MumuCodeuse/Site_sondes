@@ -28,7 +28,7 @@ elementProbesRouteur.put(
   getAndValidateId, 
   elementProbeController.updateElementProbe);
 
-  elementProbesRouteur.put(
+  elementProbesRouteur.delete(
   "/elementProbes/:id", 
   verifyToken, 
   getAndValidateId, 

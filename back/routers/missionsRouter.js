@@ -35,7 +35,7 @@ missionsRouteur.put(
   getAndValidateId, 
   missionController.updateMission);
 
-  missionsRouteur.put(
+  missionsRouteur.delete(
   "/missions/:id", 
   verifyToken, 
   getAndValidateId, 

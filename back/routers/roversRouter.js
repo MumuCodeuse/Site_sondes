@@ -28,7 +28,7 @@ roversRouteur.put(
   getAndValidateId, 
   roverController.updateRover);
 
-roversRouteur.put(
+roversRouteur.delete(
   "/rovers/:id", 
   verifyToken, 
   getAndValidateId, 
