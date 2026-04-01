@@ -29,7 +29,7 @@ app.use(express.static("public"));
 app.use(express.json()); // permet aussi de parser le corps des requêtes en JSON, body-parser est aujourd’hui intégré nativement dans Express.
 app.use(express.urlencoded({ extended: true })); // permet de parser les données URL-encodées
 // Autorisation
-app.use(cors({ origin: "http://localhost:5500" }));
+app.use(cors({origin: ["http://localhost:5500", "http://127.0.0.1:5500"]}));
 
 // ROUTAGE
 import spaceProbesRouter from "./routers/spaceProbesRouter.js";

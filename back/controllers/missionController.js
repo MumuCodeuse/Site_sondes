@@ -102,13 +102,11 @@ const updateMission = async (req, res) => {
     });
     return res.status(200).json({ success: true, mission: missionUpdate });
   } catch (error) {
-    return res
-      .status(500)
-      .json({
-        success: false,
-        errorMessage:
-          "Erreur lors de la récupération ou de la mise à jour de la mission",
-      });
+    return res.status(500).json({
+      success: false,
+      errorMessage:
+        "Erreur lors de la récupération ou de la mise à jour de la mission",
+    });
   }
 };
 
@@ -120,26 +118,24 @@ const createMission = async (req, res) => {
     });
     console.log("req.body reçu :", req.body);
     if (existingMission) {
-      return res
-        .status(400)
-        .json({
-          success: false,
-          errorMessage: "Une mission de ce nom existe déjà",
-        });
+      return res.status(400).json({
+        success: false,
+        errorMessage: "Une mission de ce nom existe déjà",
+      });
     }
 
-      console.log("Données envoyées à Sequelize :", {
-        mission_name: req.body.missionName,
-        mission_start_year: req.body.missionStartYear,
-        mission_end_year: req.body.missionEndYear,
-        mission_objective: req.body.missionObjective,
-        mission_image_url: req.body.missionImageUrl
-      });
+    console.log("Données envoyées à Sequelize :", {
+      mission_name: req.body.missionName,
+      mission_start_year: req.body.missionStartYear,
+      mission_end_year: req.body.missionEndYear,
+      mission_objective: req.body.missionObjective,
+      mission_image_url: req.body.missionImageUrl,
+    });
 
     const newMission = await Mission.create({
       mission_name: req.body.missionName,
-      mission_start_year: req.body.missionStartYear,
-      mission_end_year: req.body.missionEndYear === "" ? null : req.body.missionEndYear,
+      mission_start_year: req.body.missionStartYear === "" ? null : Number(req.body.missionStartYear),
+      mission_end_year: req.body.missionEndYear === "" ? null : Number(req.body.missionEndYear),
       mission_objective: req.body.missionObjective,
       mission_image_url: req.body.missionImageUrl,
     });
@@ -172,12 +168,10 @@ const deleteMission = async (req, res) => {
       .status(200)
       .json({ success: true, message: "Mission supprimée" });
   } catch (error) {
-    return res
-      .status(500)
-      .json({
-        success: false,
-        errorMessage: "Erreur lors de la suppression de la mission",
-      });
+    return res.status(500).json({
+      success: false,
+      errorMessage: "Erreur lors de la suppression de la mission",
+    });
   }
 };
 
