@@ -9,13 +9,15 @@
   <script src="../../js/ai.js" defer></script>
 
 </head>
-
     <body>
       <h1> Formulaire mission pour créer, mettre à jour ou supprimer une mission </h1>
-     <div class="form-container">
+     
+     
+     
+      <div class="form-container">
       <form id="formMission">
 
-          <div>
+          <div class="name-wrapper">
             <label for="name"> Nom de la mission </label>
             <input  id="name" type="text" name="missionName" minlength="2" maxlength="50" required>
           </div>
@@ -35,12 +37,12 @@
           <div class="objective-wrapper">
             <div class="objective-original">
               <label for="objective"> Décrire l'objectif de la mission </label>
-              <textarea id="objective" name="missionObjective" rows="20" cols="100"> </textarea>
+              <textarea id="objective" type="text" name="missionObjective" rows="20" cols="100"> </textarea>
             </div>
 
             <div class="objective-correction">
                 <label>Correction proposée</label>
-                <div id="correctionZone" class="correction-box"></div>
+                <div id="correctionZone" type="text" class="correction-box"></div>
             </div>
           </div>
 
@@ -55,6 +57,14 @@
           </div>
 
             <button id= "buttonSubmit" type="submit">Créer la mission</button>
+
+          <div class="agency-wrapper">
+            <label for="agencyName">Nom de l'agence</label>
+            <input id="agencyName" type="text" name="AgencyEnterprise">
+          </div>
+
+
+
       </form>
       </div> 
     </body>
