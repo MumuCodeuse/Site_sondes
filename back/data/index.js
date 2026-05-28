@@ -1,12 +1,12 @@
 
 import SpaceProbe from "./models/bases/SpaceProbe.js";
 import ElementProbe from "./models/bases/ElementProbe.js";
-import ProbeScientificTools from "./models/bases/ProbeScientificTools.js";
+import ProbeScientificTool from "./models/bases/ProbeScientificTool.js";
 import RoleProbe from "./models/bases/RoleProbe.js";
 import TypeProbe from "./models/bases/TypeProbe.js";
 import Rover from "./models/bases/Rover.js";
 import ElementRover from "./models/bases/ElementRover.js";
-import RoverScientificTools from "./models/bases/RoverScientificTools.js";
+import RoverScientificTool from "./models/bases/RoverScientificTool.js";
 import RoleRover from "./models/bases/RoleRover.js";
 import TypeRover from "./models/bases/TypeRover.js";
 import Mission from "./models/bases/Mission.js";
@@ -22,12 +22,12 @@ import CelestialElement from "./models/bases/CelestialElement.js";
 const modelsBase = {
     SpaceProbe,
     ElementProbe,
-    ProbeScientificTools,
+    ProbeScientificTool,
     RoleProbe,
     TypeProbe,
     Rover,
     ElementRover,
-    RoverScientificTools,
+    RoverScientificTool,
     RoleRover,
     TypeRover,
     Mission,

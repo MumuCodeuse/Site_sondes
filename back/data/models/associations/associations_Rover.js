@@ -2,7 +2,7 @@
 
 import Rover from "../bases/Rover.js";
 import ElementRover from "../bases/ElementRover.js";
-import RoverScientificTools from "../bases/RoverScientificTools.js";
+import RoverScientificTool from "../bases/RoverScientificTool.js";
 import RoleRover from "../bases/RoleRover.js";
 import TypeRover from "../bases/TypeRover.js";
 
@@ -27,14 +27,14 @@ export default function associateRoverModels() {
 
   //--------------------------------------------------------
 
-  //2) liaison entre Rover et RoverScientificTools. Cardinalités : Rover: 1,N; RoverScientificTools: 1,N
+  //2) liaison entre Rover et RoverScientificTool. Cardinalités : Rover: 1,N; RoverScientificTool: 1,N
   // Accéder à tous les outils scientifique d'un rover
   // Relation many-many
 
-  Rover.belongsToMany(RoverScientificTools, {
-    through: "tl_rover_scientific_tools",
+  Rover.belongsToMany(RoverScientificTool, {
+    through: "tl_rover_scientific_tool",
     foreignKey: "rover_id",
-    otherKey: "rover_scientific_tools_id",
+    otherKey: "rover_scientific_tool_id",
     as: "scientificToolsRover",
   });
 
@@ -42,9 +42,9 @@ export default function associateRoverModels() {
   // Accéder aux rovers qui ont un outils scientifique spécifique
   // Relation many-many
 
-  RoverScientificTools.belongsToMany(Rover, {
-    through: "tl_rover_scientific_tools",
-    foreignKey: "rover_scientific_tools_id",
+  RoverScientificTool.belongsToMany(Rover, {
+    through: "tl_rover_scientific_tool",
+    foreignKey: "rover_scientific_tool_id",
     otherKey: "rover_id",
     as: "roversWithThisScientificTool",
   });

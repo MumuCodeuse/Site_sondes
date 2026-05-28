@@ -3,7 +3,7 @@
 
 import SpaceProbe from "../bases/SpaceProbe.js";
 import ElementProbe from "../bases/ElementProbe.js";
-import ProbeScientificTools from "../bases/ProbeScientificTools.js";
+import ProbeScientificTool from "../bases/ProbeScientificTool.js";
 import RoleProbe from "../bases/RoleProbe.js";
 import TypeProbe from "../bases/TypeProbe.js";
 import Rover from "../bases/Rover.js";
@@ -46,16 +46,16 @@ export default function associateProbeModels() {
     // 3) Liaison entre space_probe et probe_scientific_tools. Cardinalités : SP:1,N; ProbeScientificTool:1,N.
     // Pour accéder à la liste des outils scientifiques d'une sonde
     // Relation many-many
-    SpaceProbe.belongsToMany(ProbeScientificTools, {
-        through: "tl_probe_scientific_tools",
+    SpaceProbe.belongsToMany(ProbeScientificTool, {
+        through: "tl_probe_scientific_tool",
         foreignKey: "space_probe_id",
         otherKey: "probe_scientific_tool_id",
         as: "scientificToolsProbe",
     });
 
     // La reciproque de la relation. Pour accéder à la liste des sondes utilisant un même type d'outil scientifique
-    ProbeScientificTools.belongsToMany(SpaceProbe, {
-        through: "tl_probe_scientific_tools",
+    ProbeScientificTool.belongsToMany(SpaceProbe, {
+        through: "tl_probe_scientific_tool",
         foreignKey: "probe_scientific_tool_id",
         otherKey: "space_probe_id",
         as: "spaceProbes",

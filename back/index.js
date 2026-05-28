@@ -1,6 +1,4 @@
 import app from "./app.js";
-import dotenv from "dotenv";
-dotenv.config();
 
 import { connectDB } from "./data/sequelize.js"; // Connexion avec Sequelize
 
@@ -9,10 +7,8 @@ const port = process.env.PORT;
 // DEMARRAGE DU SERVEUR
 async function startServer() {
   try {
-    // await sequelize.authenticate(); // Vérifie la connexion à la base de données
-    //console.log("Connexion à la base de données réussie !"); A supprimer, à vérifier
 
-    await connectDB(); // Vérifie la connexion à la base de données
+    await connectDB(); // appel la fonction pour connectionVérifie la connexion à la base de données, voir le fichier sequelize.js
     console.log("Base de données connectée avec succès !");
 
     // Démarrage du serveur uniquement en mode normal

@@ -1,4 +1,4 @@
-// Importation du module 'pg' qui permet d'interagir avec une base de données PostgreSQL.
+// Pour des requêtes SQL (donc en dehors de Sequelize) Importation du module 'pg' qui permet d'interagir avec une base de données PostgreSQL.
 // Étant donné que 'pg' est un module CommonJS, on doit l'importer différemment dans un projet ES Module.
 import pkg from 'pg';  
 

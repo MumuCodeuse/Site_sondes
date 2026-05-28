@@ -12,6 +12,7 @@ it('POST /firstLogin doit renvoyer un token', async () => {
       temporaryPassword: "Casimir, l'île aux enfants"
     });
 
+    // revoir la sécurité : mot de passe en dur dans le test.
   expect(res.status).toBe(200);
   expect(res.body.success).toBe(true);
   expect(res.body.token).toBeDefined();

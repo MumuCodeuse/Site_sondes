@@ -4,7 +4,7 @@ import sequelize from "../../sequelize.js";
 class Country extends Model {}
 Country.init(
     {
-        Country_id: {
+        country_id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,

@@ -1,35 +1,35 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../../sequelize.js"; 
 
-class ProbeScientificTools extends Model {}
+class ProbeScientificTool extends Model {}
 
-ProbeScientificTools.init(
+ProbeScientificTool.init(
     {
-        probe_scientific_tools_id: {
+        probe_scientific_tool_id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
         },
-        probe_scientific_tools_name: {
+        probe_scientific_tool_name: {
             type: DataTypes.STRING,
         },
    
-        probe_scientific_tools_characteristic: {
+        probe_scientific_tool_characteristic: {
             type: DataTypes.TEXT,
         },
-        probe_scientific_tools_comment: {
+        probe_scientific_tool_comment: {
             type: DataTypes.TEXT,
         },
-        probe_scientific_tools_image_url: {
+        probe_scientific_tool_image_url: {
             type: DataTypes.STRING,
         },
     },
     {
         sequelize, 
-        modelName: "ProbeScientificTools",
-        tableName: "probe_scientific_tools",
+        modelName: "ProbeScientificTool",
+        tableName: "probe_scientific_tool",
         freezeTableName: true, 
         timestamps: false,
     }
 );
-export default ProbeScientificTools;
+export default ProbeScientificTool;

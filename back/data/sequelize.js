@@ -1,9 +1,9 @@
 // 📌 Importation des modules nécessaires
 import { Sequelize } from 'sequelize'; 
-import dotenv from 'dotenv'; // dotenv permet de charger les variables d'environnement depuis un fichier .env.
+import dotenv from 'dotenv'; // Passer par config.js ???
 
 // 📌 Chargement des variables d'environnement définies dans le fichier .env
-dotenv.config(); // Cette ligne permet de récupérer automatiquement les valeurs de connexion stockées dans .env.
+dotenv.config(); // récupération automatique des valeurs de connexion stockées dans .env.
 
 
 // 📌 Initialisation de la connexion Sequelize avec PostgreSQL
