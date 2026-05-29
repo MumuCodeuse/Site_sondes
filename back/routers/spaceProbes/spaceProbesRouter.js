@@ -1,7 +1,7 @@
 import { Router } from "express";
-import spaceProbeController from "../controllers/spaceProbeController.js";
-import verifyToken from "../middlewares/verifyToken.js";
-import { getAndValidateId } from "../middlewares/getAndValidateId.js";
+import spaceProbeController from "../../controllers/spaceProbeController.js";
+import verifyToken from "../../middlewares/verifyToken.js";
+import { getAndValidateId } from "../../middlewares/getAndValidateId.js";
 
 const spaceProbesRouter = Router();
 

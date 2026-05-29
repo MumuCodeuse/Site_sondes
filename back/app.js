@@ -32,11 +32,16 @@ app.use(express.urlencoded({ extended: true })); // permet de parser les donnée
 app.use(cors({origin: ["http://localhost:5500", "http://127.0.0.1:5500"]}));
 
 // ROUTAGE
-import spaceProbesRouter from "./routers/spaceProbesRouter.js";
+// Se logger
 import loginRouter from "./routers/loginRouter.js";
-import roversRouter from "./routers/roversRouter.js";
-import missionsRouter from "./routers/missionsRouter.js";
-import elementProbesRouter from "./routers/elementProbesRouter.js";
+// spaceProbes
+import spaceProbesRouter from "./routers/spaceProbes/spaceProbesRouter.js";
+import elementProbesRouter from "./routers/spaceProbes/elementProbesRouter.js";
+//missions
+import missionsRouter from "./routers/missions/missionsRouter.js";
+//rovers
+import roversRouter from "./routers/rovers/roversRouter.js";
+
 
 //Montage des routers sur endpoints
 app.use("/api", spaceProbesRouter);

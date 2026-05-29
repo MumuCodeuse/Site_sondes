@@ -1,7 +1,7 @@
 import {Router} from "express";
-import roverController from "../controllers/roverController.js";
-import {getAndValidateId} from "../middlewares/getAndValidateId.js";
-import verifyToken from "../middlewares/verifyToken.js";
+import roverController from "../../controllers/roverController.js";
+import {getAndValidateId} from "../../middlewares/getAndValidateId.js";
+import verifyToken from "../../middlewares/verifyToken.js";
 
 
 const roversRouteur = Router();

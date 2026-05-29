@@ -1,7 +1,7 @@
 import {Router} from "express";
-import elementProbeController from "../controllers/elementProbeController.js";
-import {getAndValidateId} from "../middlewares/getAndValidateId.js";
-import verifyToken from "../middlewares/verifyToken.js";
+import elementProbeController from "../../controllers/elementProbeController.js";
+import {getAndValidateId} from "../../middlewares/getAndValidateId.js";
+import verifyToken from "../../middlewares/verifyToken.js";
 
 
 const elementProbesRouteur = Router();

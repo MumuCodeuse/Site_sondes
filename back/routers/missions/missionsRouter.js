@@ -1,7 +1,7 @@
 import {Router} from "express";
-import missionController from "../controllers/missionController.js";
-import {getAndValidateId} from "../middlewares/getAndValidateId.js";
-import verifyToken from "../middlewares/verifyToken.js";
+import missionController from "../../controllers/missionController.js";
+import {getAndValidateId} from "../../middlewares/getAndValidateId.js";
+import verifyToken from "../../middlewares/verifyToken.js";
 
 
 const missionsRouteur = Router();
