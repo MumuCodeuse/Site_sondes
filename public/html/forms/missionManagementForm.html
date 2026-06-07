@@ -4,68 +4,302 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Formulaire mission</title>
-  <link rel="stylesheet" href="../../css/missionForm.css">
+  <link rel="stylesheet" href="../../css/missionFormManag.css">
   <script src="../../js/forms/missionForm.js" defer></script>
-  <script src="../../js/ai.js" defer></script>
+ <!-- <script src="../../js/ai.js" defer></script> -->
 
 </head>
     <body>
       <h1> Formulaire mission pour créer, mettre à jour ou supprimer une mission </h1>
      
-     
-     
-      <div class="form-container">
-      <form id="formMission">
+      <div class="form">
+        <form id="form-mission">
 
-          <div class="name-wrapper">
-            <label for="name"> Nom de la mission </label>
-            <input  id="name" type="text" name="missionName" minlength="2" maxlength="50" required>
-          </div>
-
-          <div class="year-wrapper">
-          <div class="year-field">
-              <label for="start-year"> Indiquer l'année de commencement de la mission </label>
-              <input id="start-year" type= "text" name="missionStartYear">
-          </div>
-
-          <div class="year-field">
-              <label for="end-year"> Indiquer l'année de fin de la mission </label>
-              <input id="end-year" type="text" name="missionEndYear">
-          </div>
-          </div>
-
-          <div class="objective-wrapper">
-            <div class="objective-original">
-              <label for="objective"> Décrire l'objectif de la mission </label>
-              <textarea id="objective" type="text" name="missionObjective" rows="20" cols="100"> </textarea>
+  <!--Mission-------------------------------------------------------------------- -->
+          <div class="mission">
+          
+            <div class="mission__section">
+              <label for="name">Nom de la mission</label>
+              <input  id="name" type="text" name="missionName" minlength="2" maxlength="50" required>
             </div>
 
-            <div class="objective-correction">
-                <label>Correction proposée</label>
-                <div id="correctionZone" type="text" class="correction-box"></div>
+            <!--Dates---------------- -->
+            <div class="mission__section">
+              
+              <div class="mission__year">
+                  <label for="start-year">Indiquer l'année de commencement de la mission</label>
+                  <input id="start-year" type= "number" name="missionStartYear">
+              </div>
+
+              <div class="mission__year">
+                  <label for="end-year">Indiquer l'année de fin de la mission</label>
+                  <input id="end-year" type="number" name="missionEndYear">
+              </div>
             </div>
+
+            <!--Objectifs missions---------------- -->
+            <div class="mission__section">
+              
+              <div class="mission__objective-original">
+                <label for="objective">Décrire l'objectif de la mission</label>
+                <textarea id="objective" type="text" name="missionObjective"> </textarea>
+              </div>
+
+              <div class="mission__url">
+                  <label for="url"> Indiquer l'url de l'image </label>
+                  <input id="url" type="url" name="missionImageUrl" size="30">
+              </div>
+
+              <!--Bouton création mission -->
+              <button class= "mission__submit" type="submit">Créer la mission</button>
+            </div>
+           
+              <!--Sondes correspondantes--> 
+            <div class="mission__section">
+               
+              <div class="mission__listeProbes">
+                <label for="probe-name-select">Choisir la sonde correspondante à la mission, s'il y a plusieurs sondes concernées, les créer les unes après les autres</label>
+
+                <div class="mission__containerSelect">
+                    <select id="probe-name-select" name="spaceProbeId"> 
+                        <option value="">Choisir une sonde</option>
+                    </select>
+                </div>
+
+              <!--Bouton sonde concernée par la mission-->
+              <button class="probeMission__onclick" type="button">Ajouter une sonde supplémentaire</button>
+
+              </div>
+            </div>
+        </div>
+
+  <!--Agency ------------------------------------------------------------------ -->
+          <div class="agency">
+
+            <div class="agency__section">
+                <label for="age-name">Nom de l'agence</label>
+                <input id="age-name" type="text" name="AgencyEnterprise">
+            </div>
+
+            <div class="agency__section">
+                <label for="age-information">Informations sur l'agence ou sur les agences</label>
+                <textarea id="age-information" type="text" name="agencyDescription"></textarea>
+            </div>
+
+            <div class="agency__section">
+                <label for="age-image">URL de l'image</label>
+                <input id="age-image" type="url" name="agencyUrl">
+            </div>
+
+            <div class="agency__section">
+                <label for="country">Pays de l'agence ou des agences</label>
+                <input id="country" type="text" name="countryAgency">
+            </div>
+          
+            <!--Bouton création agence -->
+              <button class="agency__submit" type="submit">Créer l'agence</button>
+          
           </div>
 
-          <div class="button-ortho-wrapper">
-          <button id="button-verif-orthographe" type="button">Vérifier l'orthographe</button>
-          <button id="button-correction" type="button">Appliquer la correction</button>
+  <!--Evenement mission---------------------------------------------------------- -->  
+          <div class="event">
+
+            <div class="event__section">
+              <label for="event-mission">Nom de l'événement caractérisant la mission</label>
+              <input id="event-mission" type="text" name="eventMission">
+            </div>
+
+            <div class="event__section">
+              <label for="event-date">Année de l'évenement</label>
+              <input id="event-date" type="number" name="eventMissionDate">
+            </div>
+
+            <div class="event__section">
+              <label for="event-mission">Description de l'événement</label>
+              <textarea id="event-mission" type="text" name="eventMission"></textarea>
+            </div>
+
+            <div class="event__section">
+              <label for="image-event">URL de l'image</label>
+              <input id="image-event" type="url" name="eventUrl">
+            </div>
+
+            <!--Bouton création événement -->
+              <button class="event__submit" type="submit">Créer l'événement</button>
+
           </div>
 
-          <div>
-              <label for="url"> Indiquer l'url de l'image </label>
-              <input id="url" type="url" name="missionImageUrl" size="30">
+  <!-- Scientific discovery-------------------------------------------------- --> 
+          <div class="scient-disco">
+
+            <div class="scient-disco__section">
+              <label for="scientific-exp">Découverte scientifique attendue</label>
+              <textarea id="scientific-exp" type="number" name="scientificExpected"> </textarea>
+            </div>
+
+            <div class="scient-disco__section">
+              <label id="discovery-cat">Catégorie de la découverte scientifique</label>
+              <input for="discovery-cat" type="text" name="discoveryCategory">
+            </div>
+
+            <div class="scient-disco__section">
+              <label for="discovery-res">Découverte scientifique</label>
+              <textarea id="discovery-res" type="text" name="discoveryResult"> </textarea>
+            </div>
+
+            <div class="scient-disco__section">
+              <label for="discovery-ev">Evolution de la découverte</label>
+              <input id="discovery-ev" type="text" name="discoveryEvolution">
+            </div>
+
+            <div class="scient-disco__section">
+              <label for="discovery-url">URL image découverte</label>
+              <input id="discovery-url" type="url" name="discoveryUrl">
+            </div>
+
+              <!--Bouton création découverte scientifique -->
+              <button class="scient-disco__submit" type="submit">Créer la découverte scientifique</button>
+
           </div>
 
-            <button id= "buttonSubmit" type="submit">Créer la mission</button>
+  <!-- publication-------------------------------------------------- -->
+          <div class="publication">
 
-          <div class="agency-wrapper">
-            <label for="agencyName">Nom de l'agence</label>
-            <input id="agencyName" type="text" name="AgencyEnterprise">
+            <div class="publication__section">
+              <label for="publi-objective">Sujet de la publication</label>
+              <textarea id="publi-objective" type="text" name="publicationObjective"> </textarea>
+            </div>
+
+            <div class="publication__section">
+              <label for="publi-date">Date de parution</label>
+              <input id="publi-date" type="number" name="publicationDate">
+            </div>
+
+            <div class="publication__section">
+              <label for="publi-author" >Nom de l'auteur de la publication</label>
+              <input id="publi-author" type="text" name="publicationAuthor">
+            </div>
+
+            <div class="publication__section">
+              <label for="publi-log">Nom du journal</label>
+              <input id="publi-log" type="text" name="publicationLog">
+            </div>
+
+            <!--Bouton création de la publication -->
+            <button class="publi-log__submit" type="submit">Créer la publication</button>
+
           </div>
 
+  <!--Technologie testée------------------------------------------  -->  
+          <div class="tested-technology">
 
+            <div class="test-techno__section">
+              <label for="test-technology">Nom de la technologie testée</label>
+              <textarea id="test-technology" type="text" name="testedTechName"> </textarea>
+            </div>
 
-      </form>
+            <div class="test-techno__section">
+              <label for="techno-description">Description de la technologie testée</label>
+              <textarea id="techno-description" type="text" name="testedTechnologyDescription"> </textarea>
+            </div>
+
+            <div class="test-techno__section">
+              <label for="techno-purpose">But de la technologie testée</label>
+              <textarea id="techno-purpose" type="text" name="testedTechPurpose"> </textarea>
+            </div>
+
+            <div class="test-techno__section">
+              <label for="test-date">Date du test</label>
+              <input id="test-date" type="number" name="testedTechDate">
+            </div>
+
+            <div class="test-techno__section">
+              <label for="test-result">Résultat du test</label>
+              <input id="test-result" type="text" name="testedTechresult">
+            </div>
+
+            <div class="test-techno__section">
+              <label for="test-status">statut</label>
+              <input id="test-status" type="text" name="testedTechStatus">
+            </div>
+
+            <div class="test-techno__section">
+                <label for="test-techno-image">URL de l'image</label>
+                <input id="test-techno-image" type="url" name="testTechnoUrl">
+            </div>
+
+            <!--Bouton création de la publication -->
+            <button class="test-techno__submit" type="submit">Créer la technologie</button>
+
+          </div>
+
+  <!--Objet céleste observé-->
+          <div class="celestial-object">
+
+            <div class="celestial-object__section">
+              <label for="celest-obj-name">Nom de l'objet céleste observé</label>
+              <input id="celest-object-name" type="text" name="celestObjectName">
+            </div >
+
+            <div class="celestial-object__section">  
+              <label for="celest-obj-descrip">Description de l'objet céleste observé</label>
+              <textarea id="celest-obj-descrip" type="text" name="celestObjectDescription"> </textarea>
+            </div>
+
+            <div class="celestial-object__section">
+              <label for="year-discovery-object">Date de la découverte de l'objet</label>
+              <input id="year-discovery-object" type="number" name="yearDiscoveryObject">
+            </div>
+
+            <div class="celestial-object__section">  
+              <label for="celest-obj-precision">Précision sur l'objet céleste observé</label>
+              <textarea id="elest-obj-precision" type="text" name="celestObjectDescription"> </textarea>
+            </div>
+
+            <div class="celestial-object__section">
+                <label for="celest-obj-image">URL de l'objet</label>
+                <input id="celest-obj-image" type="url" name="celestObjectUrl">
+            </div>
+
+            <!--Bouton création de l'objet -->
+            <button class="celestial-object__submit" type="submit">Créer l'objet</button>
+
+          </div>
+
+  <!--Element céleste observé-->
+          <div class="celestial-element">
+
+            <div class="celestial-element__section">
+              <label for="celest-elem-name">Nom de l'élément céleste observé</label>
+              <input id="celest-elem-name" type="text" name="celestElementName">
+            </div >
+
+            <div class="celestial-element__section">  
+              <label for="celest-elem-descrip">Description de l'élément céleste observé</label>
+              <textarea id="celest-elem-descrip" type="text" name="celestElementDescription"> </textarea>
+            </div>
+
+            <div class="celestial-element__section">
+              <label for="year-discovery-elem">Date de la découverte de l'élément</label>
+              <input id="year-discovery-elem" type="number" name="yearDiscoveryElement">
+            </div>
+
+            <div class="celestial-element__section">  
+              <label for="celest-elem-precision">Précision sur l'élément céleste observé</label>
+              <textarea id="elest-elem-precision" type="text" name="celestElementDescription"> </textarea>
+            </div>
+
+            <div class="celestial-element__section">
+                <label for="celest-elem-image">URL de l'élément</label>
+                <input id="celest-elem-image" type="url" name="celestElementUrl">
+            </div>
+
+            <!--Bouton création de l'élément -->
+            <button class="celestial-element__submit" type="submit">Créer l'élément</button>
+
+          </div>
+
+       </form>
       </div> 
     </body>
 </html>

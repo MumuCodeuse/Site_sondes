@@ -1,12 +1,12 @@
 import dotenv from "dotenv";
-dotenv.config(); // Chargement les variables du .env
+dotenv.config(); // →Charge automatiquement toutes les variables du fichier .env et les place dans process.env
 
-import fs from "fs"; //import du module fs de Node.js.. Ce module fait partie de l'API noyau (core) de Node.js, donc pas besoin de l’installer avec npm.
+import fs from "fs"; //import du module fs de Node.js.. Ce module fait partie de l'API noyau (core) de Node.js, donc pas besoin de l’installer avec npm. Il sert à LIRE les fichiers contenant les clés JWT (private.key, public.key)
 
 // Variables simples
 export const errorInDev = process.env.NODE_ENV != "production";
 
-export const isDev = process.env.NODE_ENV === "developpement";
+export const isDev = process.env.NODE_ENV === "development";
 export const port = process.env.PORT || 3000;
 
 // db

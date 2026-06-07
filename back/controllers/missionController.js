@@ -6,7 +6,7 @@ import Joi from "joi";
 // Accéder à l'ensemble des missions
 const getAllMissions = async (req, res) => {
   try {
-    const allMissions = await Mission.findAll();
+    const allMissions = await Mission.findAll(); // findAll() renvoie tjrs un tableau
     if (allMissions.length === 0) {
       return res
         .status(400)
@@ -130,14 +130,21 @@ const createMission = async (req, res) => {
       mission_end_year: req.body.missionEndYear,
       mission_objective: req.body.missionObjective,
       mission_image_url: req.body.missionImageUrl,
+      space_probe_id: Number(req.body.spaceProbeId),
     });
 
     const newMission = await Mission.create({
       mission_name: req.body.missionName,
-      mission_start_year: req.body.missionStartYear === "" ? null : Number(req.body.missionStartYear),
-      mission_end_year: req.body.missionEndYear === "" ? null : Number(req.body.missionEndYear),
+      mission_start_year:
+        req.body.missionStartYear === ""
+          ? null
+          : Number(req.body.missionStartYear),
+      mission_end_year:
+        req.body.missionEndYear === "" ? null : Number(req.body.missionEndYear),
       mission_objective: req.body.missionObjective,
       mission_image_url: req.body.missionImageUrl,
+      space_probe_id:
+        req.body.spaceProbeId === "" ? null : Number(req.body.spaceProbeId),
     });
 
     console.log("Mission créée :", newMission.toJSON());
@@ -175,7 +182,7 @@ const deleteMission = async (req, res) => {
   }
 };
 
-export default {
+export default { // l'export par défaut permet de nommer comme l'on veut  le controlleur, on exporte un objet contenant les différents controlleurs. Objet qui est une valeur anonyme exportée et que l'on renome ici "missionControlleur ds le Routeur.
   getAllMissions,
   getMissionById,
   updateMission,

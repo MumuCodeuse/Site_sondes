@@ -14,6 +14,7 @@ const getAllSpaceProbes = async (req, res) => {
       .json({ success: false, errorMessage: "Erreur pour accéder à la BDD" });
   }
 };
+
 //--------------------------------------------------------------------------------
 
 // Obtenir une sonde précise

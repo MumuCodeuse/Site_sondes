@@ -1,0 +1,125 @@
+@font-face {
+  font-family: "Antaro";
+  src: url("../fonts/Antaro.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "JosefinSemiBold";
+  src: url("../fonts/JosefinsansSemibold.ttf") format("truetype");
+}
+
+body {
+  font-family: "Antaro", sans-serif;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+  font-weight: 1000;
+  background: #c5c3c3;
+  align-items: center;
+}
+
+form {
+  width: 65rem;
+  background: rgb(235, 233, 233);
+  padding: 2rem;
+  border-radius:0.75rem;
+}
+
+
+button {
+  width: 100%;
+  height: 4rem;
+  margin-top: 1.25rem;
+  font-family: "Antaro", sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  border-radius:0.35rem;
+
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+}
+
+input, textarea {
+  font-family: "JosefinSemiBold", sans-serif;
+  color: rgb(94, 92, 92);
+  font-size: 1.3rem;
+  width: 100%;
+  box-sizing: border-box;
+  height: 3rem;
+  border-radius:0.35rem;
+  border: 1px solid #f6f4f4;
+}
+
+input {
+  height: 3rem;
+}
+
+textarea {
+  height: 15rem;
+}
+
+/*outline = bordure extérieure spéciale pour l’accessibilité, ne fait pas partie de la boîte, ne prends aucune place  border = bordure normale de l’élément*/
+input:focus, textarea:focus {
+  outline: 1.5px solid rgb(138, 135, 135);
+}
+
+.mission, .scient-disco, .celestial-object, .mission__submit, .scient-disco__submit, .celestial-object__submit, .mission__section, .probeMission__submit {
+  color:#62050eb1;
+}
+
+.mission__submit, .scient-disco__submit, .celestial-object__submit, .celestial-element__submit, .probeMission__submit {
+  border: 1px solid #f6f4f4;
+  background: linear-gradient(
+    180deg,
+    #62050eb1 0%,
+    #e6e6e6 20%,
+    #f6f4f4 50%,
+    #e8e8e8 80%,
+    #62050eb1 100%
+  );
+  }
+
+  .agency,.publication, .celestial-element, .agency__submit, .publi-log__submit, .celestial-element__submit {
+    color:#063bcdb1;
+  }
+
+  .agency__submit, .publi-log__submit, .celestial-element__submit {
+    border: 1px solid #f6f4f4;
+    background: linear-gradient(
+    180deg,
+    #063bcdb1 0%,
+    #e6e6e6 20%,
+    #f6f4f4 50%,
+    #e8e8e8 80%,
+    #063bcdb1 100%
+  );
+  }
+
+  .event, .tested-technology, .event__submit, .test-techno__submit {
+    color:#0d922a
+  }
+
+  .event__submit, .test-techno__submit  {
+    border: 1px solid #f6f4f4;
+    background: linear-gradient(
+    180deg,
+    #0d922a 0%,
+    #e6e6e6 20%,
+    #f6f4f4 50%,
+    #e8e8e8 80%,
+    #0d922a 100%
+  );
+  }
+
+button:focus {
+  outline: none; /* suppression de l'outline : bouton focus par défaut*/
+  font-size: 2.3rem;
+  transform: scale(1.05); /* Le bouton grossit de 5%*/
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.4); /* ajout d'une lueur douce, 0 0 → pas de décalage horizontal/vertical ,6px → taille du halo*/
+  transition: transform 0.15s ease, box-shadow 0.15s ease; /* Transition 0.15s → durée courte, dynamique, ease → accélération/décélération naturelle*/
+}
+
+

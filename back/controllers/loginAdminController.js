@@ -67,8 +67,7 @@ const loginAdmin = async (req, res) => {
     //5. Envoie du token, d'un message de confirmation et accès à l'interface
     const token = jwt.sign(tokenConstruction, jwtConfig.jwtPrivateKey, optionToken);
     return res.status(200).json({ success: true, token, message: "Accès autorisé" });
-
-    // Accès à l'interface
+    
   } catch (error) {
     return res
       .status(500)
@@ -86,15 +85,16 @@ export default {
 
 //7 . Créer le Router
 // -------------------------------------------------------------------------
-// Gestion de l'oubli de mot de passe : développer
+// Gestion de l'oubli de mot de passe : à développer
 
 // ------------------------------------------------------------------------------------------------------------------
 // Une fois que le Front a reçu le token :
-// À chaque requête vers les routes d’administration, le Front doit envoyer ce token (souvent dans le header Authorization).
+// À chaque requête vers les routes d’administration, le Front doit envoyer ce token (dans le header Authorization).
 // Le backend intercepte les requêtes, vérifie et décode le token RSA grâce à la clé publique.
 // Et là, regarder le rôle dans le payload du token :
-// -Si c’est une administratrice, autorisation ✅
-// -Sinon, refus 🚫
+// -Si c’est une administratrice, autorisation
+// -Sinon, refus
 
 // Afficher à l’admin le formulaire de gestion des sondes, rovers, missions
 // Ce formulaire est uniquement visible si le Front a reçu un token valide et un rôle “admin”.
+// enregistrer le token, côté Front  soit ds un cookie sécurisé (HTTPOnly + Secure + SameSite), C’est la méthode recommandée en sécurité moderne.Pourquoi ?Le JS du navigateur ne peut pas lire un cookie HTTPOnly → protège contre les attaques XSS.Le cookie est envoyé automatiquement au backend.Tu n’as pas besoin de faire localStorage.getItem("token"); soit Deuxième choix : sessionStorage. À utiliser si :tu veux que l’utilisateur soit déconnecté quand il ferme l’onglet. tu veux éviter que le token reste sur la machine. Avantages :isparaît quand l’onglet se ferme, moins exposé que localStorage

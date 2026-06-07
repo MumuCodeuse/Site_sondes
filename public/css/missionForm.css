@@ -1,12 +1,12 @@
 @font-face {
-  font-family: "Antaro";
-  src: url("../fonts/Antaro.ttf") format("truetype");
-}
+    font-family: "Antaro";
+      src: url("../fonts/Antaro.ttf") format("truetype");
+      }
 
-@font-face {
-  font-family: "JosefinSemiBold";
-  src: url("../fonts/JosefinsansSemibold.ttf") format("truetype");
-}
+      @font-face {
+        font-family: "JosefinSemiBold";
+          src: url("../fonts/JosefinsansSemibold.ttf") format("truetype");
+          }
 
 body {
   font-family: "Antaro", sans-serif;
