@@ -2,6 +2,7 @@
 
 import dotenv from "dotenv";
 dotenv.config();
+console.log("DB_NAME chargé :", process.env.DB_NAME);
 
 //import bibliothèque et autre
 import bcrypt from "bcrypt";

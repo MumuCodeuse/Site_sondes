@@ -16,7 +16,11 @@ import { jwt as jwtConfig } from "../utils/config.js";
 
 // 1ere connexion avec mot de passe temporaire pour s'identifier
 const firstLoginAPI = async (req, res) => {
+  console.log("Requête reçue :", req.body);
+
   const { emailForm, temporaryPassword } = req.body;
+
+  // Validation Joi
   const schemaFirstLoginAPI = Joi.object({
     emailForm: Joi.string().email().required(),
     temporaryPassword: Joi.string()
@@ -29,6 +33,7 @@ const firstLoginAPI = async (req, res) => {
   const validation = schemaFirstLoginAPI.validate(req.body);
 
   if (validation.error) {
+     console.log("Erreur Joi :", error.details);
     return res.status(400).json({
       success: false,
       errorMessage: validation.error.details[0].message,
@@ -39,14 +44,23 @@ const firstLoginAPI = async (req, res) => {
     const admin = await Administrator.findOne({
       where: { email: emailForm },
     });
+    console.log("Admin trouvé :", admin);
     if (!admin) {
+      console.log("Aucun admin trouvé pour :", emailForm);
       return res.status(404).json({
         success: false,
-        errorMessage: "Vous n'êtes pas l'administratrice",
+        errorMessage: "Vous n'êtes pas l'administratrice, email inconnu",
       });
     }
+
+    console.log("Mot de passe envoyé :", temporaryPassword);
+    console.log("Hash stocké :", admin.password);
+
     const isMatch = await bcrypt.compare(temporaryPassword, admin.password);
+    console.log("Résultat comparaison bcrypt :", isMatch);
+
     if (!isMatch) {
+      console.log("Mot de passe incorrect");
       return res.status(401).json({
         success: false,
         errorMessage: "Mauvais mot de passe",
@@ -54,11 +68,14 @@ const firstLoginAPI = async (req, res) => {
     }
 
     //Construction token pour le renvoyer
+    console.log("Clé privée chargée :", process.env.JWT_PRIVATE_KEY_PATH ? "OK" : "ABSENTE");
+
     const tokenConstruction = {
       idAdmin: admin.admin_id,
       emailAdmin: admin.email,
       roleAdmin: admin.role,
     };
+    console.log("Payload JWT :", tokenConstruction);
 
     const tokenOptions = {
       algorithm: "RS256",
@@ -69,8 +86,11 @@ const firstLoginAPI = async (req, res) => {
       jwtConfig.jwtPrivateKey,
       tokenOptions,
     );
+    console.log("Token généré :", token);
     return res.status(200).json({ success: true, token });
+  
   } catch (error) {
+    console.error("ERREUR dans /firstLogin :", error);
     return res
       .status(500)
       .json({ success: false, errorMessage: "Erreur serveur" });

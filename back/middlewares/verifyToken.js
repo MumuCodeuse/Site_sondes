@@ -10,10 +10,16 @@
 // appeler next() si tout est bon
 // Si non OK gérer les différentes erreurs
 
+// A faire : utiliser la centralisation de la config.js :
+//  import { jwt } from "../utils/config.js";
+// const publicKey = jwt.jwtPublicKey;
+
+
 import jwt from "jsonwebtoken";
 import fs from "fs";
+import { jwt as jwtConfig } from "../utils/config.js";
+const publicKey = jwtConfig.jwtPublicKey;
 
-const publicKey = fs.readFileSync("./keys/public.key", "utf8");
 
 const verifyToken = (req, res, next) => {
   // 1) Vérifier que le header Authorization existe

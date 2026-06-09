@@ -19,8 +19,8 @@ export const db = {
 };
 
 // Clés JWT
-  const jwtPrivateKeyPath = process.env.JWT_PRIVATE_KEY_PATH;
-  const jwtPublicKeyPath = process.env.JWT_PUBLIC_KEY_PATH;
+  const jwtPrivateKeyPath = process.env.JWT_PRIVATE_KEY_PATH || "../keys/private.key";
+  const jwtPublicKeyPath = process.env.JWT_PUBLIC_KEY_PATH || "../keys/public.key";
   
   export const jwt = {
     jwtPrivateKeyPath,

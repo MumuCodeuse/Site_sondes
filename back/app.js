@@ -2,6 +2,8 @@
 import dotenv from "dotenv";
 dotenv.config(); // récupère automatiquement les valeurs de connexion stockées dans .env.
 
+// A faire : centraliser la configuration : import { port, isDev } from "./utils/config.js";
+
 // MODULES EXTERNES
 import express from "express";
 import cors from "cors";

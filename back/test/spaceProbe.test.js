@@ -1,7 +1,14 @@
+import dotenv from "dotenv";
+dotenv.config({ path: "../.env" });
+
+import app from "../app.js"; 
+
 import { describe, it, expect } from "vitest";
 import request from "supertest";
-import app from "../app.js"; 
 import jwt from "jsonwebtoken";
+
+// Déclarer un test, Appeler la route, vérifier la réponse
+// Se positionner dans le terminal, sans avoir express de lancé et taper "npm test". Le raccourci sur la ligne 14 ne fonctionne pas.
 
 
 it('POST /firstLogin doit renvoyer un token', async () => {
@@ -13,6 +20,7 @@ it('POST /firstLogin doit renvoyer un token', async () => {
     });
 
     // revoir la sécurité : mot de passe en dur dans le test.
+  console.log(res.status, res.body);
   expect(res.status).toBe(200);
   expect(res.body.success).toBe(true);
   expect(res.body.token).toBeDefined();

@@ -182,7 +182,8 @@ const deleteMission = async (req, res) => {
   }
 };
 
-export default { // l'export par défaut permet de nommer comme l'on veut  le controlleur, on exporte un objet contenant les différents controlleurs. Objet qui est une valeur anonyme exportée et que l'on renome ici "missionControlleur ds le Routeur.
+export default {
+  // l'export par défaut permet de nommer comme l'on veut  le controlleur, on exporte un objet contenant les différents controlleurs. Objet qui est une valeur anonyme exportée et que l'on renome ici "missionControlleur ds le Routeur.
   getAllMissions,
   getMissionById,
   updateMission,

@@ -10,7 +10,6 @@ import { jwt as jwtConfig } from "../utils/config.js";
 import bcrypt from "bcrypt";
 import Joi from "joi";
 
-
 // 3.  Récupération email et mot de passe du formulaire de connexion
 // POST /login - Authentification de façon classique
 
@@ -35,6 +34,16 @@ const loginAdmin = async (req, res) => {
       message: validation.error.details[0].message,
     });
   }
+  // Pour info sur JOI : validation.error = {
+  //   details: [
+  //     {
+  //       message: '"emailForm" must be a valid email',
+  //       path: ['emailForm'],
+  //       type: 'string.email',
+  //       context: { ... }          }]}
+  // details = tableau de toutes les erreurs trouvées
+  // [0] = première erreur
+  // .message =  message d’erreur lisible généré par Joi
 
   // Récupération dans la bdd de l'administrateur correspondant
   try {
@@ -43,7 +52,9 @@ const loginAdmin = async (req, res) => {
     });
 
     if (!admin) {
-      return res.status(401).json({ success: false, errorMessage: "Admin inconnu" });
+      return res
+        .status(401)
+        .json({ success: false, errorMessage: "Admin inconnu" });
     }
 
     // Comparaison mot de passe
@@ -51,7 +62,9 @@ const loginAdmin = async (req, res) => {
 
     const isMatch = await bcrypt.compare(passwordForm, passwordHash);
     if (!isMatch) {
-      return res.satus(401).json({ success: false, errorMessage: "Admin inconnu" });
+      return res
+        .satus(401)
+        .json({ success: false, errorMessage: "Admin inconnu" });
     }
 
     //4. Récupérer l'ID, email et le rôle de l'administrateur correspondant. Construction du token pour le renvoyer
@@ -61,20 +74,23 @@ const loginAdmin = async (req, res) => {
       roleAdmin: admin.role,
     };
     const optionToken = {
-      algorithm: "RS256",
+      algorithm: "RS256", // Mode de signature avec 2 clés différentes, privé et public
       expiresIn: "2h",
     };
     //5. Envoie du token, d'un message de confirmation et accès à l'interface
-    const token = jwt.sign(tokenConstruction, jwtConfig.jwtPrivateKey, optionToken);
-    return res.status(200).json({ success: true, token, message: "Accès autorisé" });
-    
-  } catch (error) {
+    const token = jwt.sign(
+      tokenConstruction,
+      jwtConfig.jwtPrivateKey,
+      optionToken,
+    );
     return res
-      .status(500)
-      .json({
-        success: false,
-        errorMessage: "Erreur dans la récupération des données",
-      });
+      .status(200)
+      .json({ success: true, token, message: "Accès autorisé" });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      errorMessage: "Erreur dans la récupération des données",
+    });
   }
 };
 

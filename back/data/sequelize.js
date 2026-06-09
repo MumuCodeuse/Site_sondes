@@ -1,10 +1,24 @@
-// 📌 Importation des modules nécessaires
-import { Sequelize } from 'sequelize'; 
-import dotenv from 'dotenv'; // Passer par config.js ???
+// Suite à la création de config.js dans le dossier utils, il faudra l'utiliser dans ce fihier pour centraliser la configuration, repérer les autres fichier où la centralisation est possible : 
+// import { db } from "../utils/config.js";
 
+// const sequelize = new Sequelize(
+//     db.name,
+//     db.user,
+//     process.env.DB_PASSWORD, // A ajouter dans config.js 
+//     {
+//         host: db.host,
+//         port: db.port,
+//         dialect: "postgres",
+//         logging: false
+//     }
+// );
+
+import dotenv from 'dotenv'; // Passer par config.js ???
 // 📌 Chargement des variables d'environnement définies dans le fichier .env
 dotenv.config(); // récupération automatique des valeurs de connexion stockées dans .env.
 
+// 📌 Importation des modules nécessaires
+import { Sequelize } from 'sequelize'; 
 
 // 📌 Initialisation de la connexion Sequelize avec PostgreSQL
 const sequelize = new Sequelize(
